@@ -1,4 +1,13 @@
-﻿namespace CSharp_Algorithm
+﻿using System;
+using System.Collections.Generic;
+using System.IO; 
+using System.Linq;
+using System.Net.Http; 
+using System.Text;
+using System.Threading; 
+using System.Threading.Tasks;
+
+namespace DataStructure
 {
     internal class Program
     {
@@ -12,8 +21,6 @@
 
         public void List_()
         {
-            // 
-            List 
         }
         public int FindinDex(int[] intArray, int data)
         {
