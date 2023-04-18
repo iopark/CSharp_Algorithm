@@ -91,17 +91,31 @@ namespace day18_Task
         /// 추가 작업, MSDN .NET 8 참조 
         /// </summary>
         /// <param name="match"></param>
-        /// <returns>value last found (if found), otherwise returns default value of the targeting list's data_type </returns>
+        /// <returns>찾는값중 선행배열기준 마지막으로 있는값을 반환(if found), 없다면 상대하는 list의 자료형의 default를 반환 if int, 0, etc </returns>
         public T? FindLast(Predicate<T> match)
         {
-            int findAny = FindIndex(match);
-            bool final_el = false;
-            if (findAny != -1)
+            //int findAny = FindIndex(match); // Recursion 방식으로 할수 있지 않을까 생각해보았지만,(할줄모름다)
+            //                                   아직은 때가 아니라고 판단하였습니다 (어떻게 해요 교수님 ㅠ)
+            //if (findAny != -1)                 찾아도 나오질 않습니다 (찾을줄도모름다)
+            //{
+            //    for (int i = findAny; i < size; i++)
+            if(match == null)
+                throw new ArgumentNullException();
+            for (int i = size- 1; i >= 0; i--)
             {
-                for (int i = findAny; i < size; i++)
-                {
-                    
-                }
+                if (match(items[i]))
+                    return items[i];
+            }
+            return default(T);
+        }
+
+        public T? Contain(Predicate<T> match)
+        {
+            if (match == null)
+                throw new ArgumentNullException();
+            for (int i = 0;i < size; i++)
+            {
+                
             }
         }
 

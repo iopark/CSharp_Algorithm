@@ -13,13 +13,5 @@ namespace day18_DataStructure
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class List<T>
-    {
-        private const int DefaultCapacity = 1;
-        private T[] items; 
-        public void Add(T item) { }
-        public void Remove(T item) { }
-
-        public void 
-    }
+   
 }
