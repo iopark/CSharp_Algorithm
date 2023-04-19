@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            List<int> list = new List<int>();
+            day18_Task.List<int> list = new day18_Task.List<int>();
             list.FindLast
         }
     }
