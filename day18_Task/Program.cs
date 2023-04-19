@@ -7,7 +7,8 @@ namespace day18_Task
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            day18_Task.List<int> list = new day18_Task.List<int>();
+            LinkedList<int> list = new LinkedList<int>();  
+            list.FindLast(1)
 
         }
     }

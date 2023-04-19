@@ -7,17 +7,24 @@ namespace day19_Task
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            DataStructure.LinkedList<string> newLL = new DataStructure.LinkedList<string>();
-            DataStructure.LinkedListNode<string> newLL_Node = new DataStructure.LinkedListNode<string>("test"); 
+            DataStructure.LinkedList<int> newLL = new DataStructure.LinkedList<int>();
+            //DataStructure.LinkedListNode<string> newLL_Node = new DataStructure.LinkedListNode<string>("test"); 
             //연결 리스트 Add First/Last 
-            newLL.AddFirst("test");
-            newLL.AddFirst("first");
-            newLL.AddLast("Last");
+            newLL.AddFirst(2);
+            newLL.AddFirst(1);
+            //Head = 1 
 
-            DataStructure.LinkedListNode<string> target_AddBefore = new DataStructure.LinkedListNode<string>("test");
+            newLL.AddLast(5);
+            newLL.AddFirst(0);
+            // Tail = 3 
+            Console.WriteLine($"AddLast 이후 값은 {newLL.ToString()}");
+
+            DataStructure.LinkedListNode<int> find_Node = newLL.FindLast(5);
+
             //추가 Add Before/After 
-            //newLL.AddBefore()
-            
+            newLL.AddBefore(find_Node, 4);
+            Console.WriteLine($"AddBefore 이후 {newLL.ToString(" & ")}\t");
+
 
         }
     }
