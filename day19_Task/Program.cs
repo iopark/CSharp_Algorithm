@@ -22,8 +22,8 @@ namespace day19_Task
             DataStructure.LinkedListNode<int> find_Node = newLL.FindLast(5);
 
             //추가 Add Before/After 
-            newLL.AddBefore(find_Node, 4);
-            Console.WriteLine($"AddBefore 이후 {newLL.ToString(" & ")}\t");
+            newLL.AddAfter(find_Node, 4);
+            Console.WriteLine($"AddAfter(5) 이후 4 추가 {newLL.ToString(" & ")}\t");
 
 
         }
