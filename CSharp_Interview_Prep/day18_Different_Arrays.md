@@ -43,7 +43,7 @@ Array와 다르게 선언된 자료형에 따라 미리 입력된 크기에 비�
 배열의 크기를 늘리거나 줄여가며 연속적인 값을 다룰수 있게 하여준다. C#언어에서는 Array 와 비슷하게, 길이에 사용하는 Count 이상의 값을 유저가 강제로 호출한다면 C#자체에서 설정한 예외처리를 통해 통제한다. 
 
 이렇게 태생적인 차이는 배열을 찾는 메서드 에서도 충분히 유추가 가능한데, Array. Length 와 List.Count으로써,\
-Array는 구현당시 크기에 따라서 연속적으로 선언된 자료형의 크기에따라 저장하는것이기에 해당 배열은 이미 선언 및 사용이 가능한 상태이지만, \
+Array는 구현당시 크기에 따라서 연속적으로 선언된 자료형에 따라 고정된 크기로 저장하는것이기에 해당 배열의 크기를 이미 값추적 및 사용이 가능한 상태이지만, (therefore size of object treated like an fullly grown adult)\
 List 는 Capacity 따로, Count 따로 가며, 값을 추가할때마다 반응하는 사실이 메서드 네이밍당시 어느정도 반영된것을 유추해볼수 있다. ( where Count = ~ Array.Length() ) \
 and If count = Capacity, copies the following array internally, before relocating into array with bigger capacity; 
 
