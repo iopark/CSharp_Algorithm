@@ -1,4 +1,6 @@
-﻿namespace day18_Task
+﻿using System.Collections;
+
+namespace day18_Task
 {
     internal class Program
     {
@@ -6,7 +8,7 @@
         {
             Console.WriteLine("Hello, World!");
             day18_Task.List<int> list = new day18_Task.List<int>();
-            list.FindLast
+
         }
     }
 }

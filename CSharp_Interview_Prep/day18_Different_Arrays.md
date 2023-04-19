@@ -40,14 +40,17 @@ LinkedList<string> linked_List = new LinkedList<string>(); // Declaring an Linke
 List 의 최대크기는 64bit Windows 기준, maximum capacity to 2 billion elements 으로 설정될수도 있다 (최대 크기 = Maximum Capacity in List Class)\
 Array와 다르게 선언된 자료형에 따라 미리 입력된 크기에 비례한 고정된 크기를 힙영역에서 갖는것이아닌, \
 크기를 임의로 우선 default에 의거하여 설정하며, (where default = default_Capacity), Count < Capacity 상태를 유지하기 위해 \
-배열의 크기를 늘리거나 줄여가며 연속적인 값을 다룰수 있게 하여준다. C#언어에서는 Array 와 비슷하게, 길이에 사용하는 Count 이상의 값을 유저가 강제로 호출한다면 C#자체에서 설정한 예외처리를 통해 통제한다. 
+Capacity가 올라가는 경우 새로운 인스턴스를 생성하며 (힙영역에서 새로운 List Class 값 생성), 해당값의 주소값을 이전하는 방식으로 구동한다.  
+C#언어에서는 Array 와 비슷하게, 길이에 사용하는 Count 이상의 값을 유저가 강제로 호출한다면 C#자체에서 설정한 예외처리를 통해 통제한다. 
 
 이렇게 태생적인 차이는 배열을 찾는 메서드 에서도 충분히 유추가 가능한데, Array. Length 와 List.Count으로써,\
-Array는 구현당시 크기에 따라서 연속적으로 선언된 자료형에 따라 고정된 크기로 저장하는것이기에 해당 배열의 크기를 이미 값추적 및 사용이 가능한 상태이지만, (therefore size of object treated like an fullly grown adult)\
+Array는 구현당시 크기에 따라서 연속적으로 선언된 자료형에 따라 고정된 크기로 저장하는것이기에 해당 배열의 크기를 이미 값추적 및 사용이 가능한 상태이지만, 
+(therefore size of object treated like an fullly grown adult)\
 List 는 Capacity 따로, Count 따로 가며, 값을 추가할때마다 반응하는 사실이 메서드 네이밍당시 어느정도 반영된것을 유추해볼수 있다. ( where Count = ~ Array.Length() ) \
 and If count = Capacity, copies the following array internally, before relocating into array with bigger capacity; 
 
-Array 가 연속적인 값으로 저장되는 또 다른 이유는 선언된 특정 instance에 대해서 heap 영역에 저장이 될때 frag. 형태로 저장될수는 없기 때문이기도하지 않을까 생각이 들지만, 이건 조금더 찾아보기로 하자 \
+Array 가 연속적인 값으로 저장되는 또 다른 이유는 선언된 특정 instance에 대해서 heap 영역에 저장이 될때 frag. 형태로 저장될수는 없기 때문이기도하지 않을까 생각이 들지만,(전혀 사실이 아니었고) 
+이건 조금더 찾아보기로 하자 (연결 리스트로 바로 반론 개박살)
 
 To be Cont, Linked Array \
 

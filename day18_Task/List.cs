@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace day18_Task
+namespace DataStructure
 {
     /* 1. 선형리스트 구현 - MSDN C# List 참고
     * Indexer[], Add, Remove, Find, FindIndex, Count, etc. 
@@ -285,14 +285,15 @@ namespace day18_Task
         {
             get
             {
-                if (index < 0 || index >= items.Length)
-                    throw new IndexOutOfRangeException();
+                if (index < 0 || index >= size)// not items.length (capacity와 별개로) List 는 카운트로써 값을 접근하는것을 제한한다. 
+                    throw new ArgumentOutOfRangeException(); //The exception that is thrown when the value of an argument is outside the allowable
+                                                             //     range of values as defined by the invoked method.
                 else
                     return items[index];
             }
             set
             {
-                if (index < 0 || index >= items.Length)
+                if (index < 0 || index >= size)
                     throw new IndexOutOfRangeException();
                 else
                     items[index] = value;
