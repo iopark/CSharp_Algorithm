@@ -21,34 +21,33 @@ LinkedList<string> linked_List = new LinkedList<string>(); // Declaring an Linke
 
 04/09/2023 
 
-¿ì¼± ±âº»ÀûÀ¸·Î ¾î¶² Array µç 
-¿¬¼ÓÀûÀÎ ¸Þ¸ð¸®»ó¿¡ µ¿ÀÏÇÑ Å¸ÀÔÀÇ ¿ä¼Ò¸¦ ÀÏ·Ä·Î ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶ÀÌ´Ù. 
+ìš°ì„  ê¸°ë³¸ì ìœ¼ë¡œ ì–´ë–¤ Array ë“  
+ì—°ì†ì ì¸ ë©”ëª¨ë¦¬ìƒì— ë™ì¼í•œ íƒ€ìž…ì˜ ìš”ì†Œë¥¼ ì¼ë ¬ë¡œ ì €ìž¥í•˜ëŠ” ìžë£Œêµ¬ì¡°ì´ë‹¤. 
 
-¸Þ¸ð¸®¼Ó¿¡ ÀúÀåµÇ´Â µ¥ÀÌÅÍÀÇ °üÁ¡À¸·Î º¼¶§¿¡, 
-¹è¿­ÀÌ È¿¿ë¼ºÀÌ ÀÖ´Â ÀÌÀ¯´Â µ¿ÀÏÇÑ ÀÚ·áÇüÀÇ ÁýÇÕÀÌ±â ¶§¹®ÀÎµ¥, ÀÌ°ÍÀº ÀÚ·áÇü¸¶´Ù Á¤ÇØÁø ¸Þ¸ð¸®¿¡°Ô Á¤ÇØÁø Å©±â°¡ ÀÖ±â ¶§¹®ÀÌ¸ç, ÀÌ°ÍÀ» È°¿ëÇÑ°ÍÀÌ ¹è¿­ÀÇ Index¿ä¼ÒÀÌ´Ù. 
-¿¹½Ã·Î, int[] array = int[10] °°Àº °æ¿ì, int´Â 4byte·ÎÀÇ °ªÀÌ ¿¬¼ÓÀûÀ¸·Î ³ª¿­µÇ¾î ¸Þ¸ð¸®¼Ó¿¡ ÀúÀåÀÌ µÇ¸ç, ±×·¸±â¿¡ °¢ ÀÚ·áÇüÅ©±âÀÇ ¹è¼ö·Î/  ¹è¿­ÀÇ Å©±â¿¡ µû¶ó ÀÚ·á°ªÀÇ ÃÑÇÕÀÇ ³ª´©±â·Î ³ª´©°Ô µÊÀ¸·Î ¸Þ¸ð¸®¿¡ ¿¬¼ÓÀûÀ¸·Î ÀúÀåµÈ ÀÏÁ¤ÇÑ Å©±âÀÇ µ¥ÀÌÅÍ °ªÀ» Á¢±ÙÇÏ´Â ¹æ½ÄÀÌ´Ù. 
+ë©”ëª¨ë¦¬ì†ì— ì €ìž¥ë˜ëŠ” ë°ì´í„°ì˜ ê´€ì ìœ¼ë¡œ ë³¼ë•Œì—, 
+ë°°ì—´ì´ íš¨ìš©ì„±ì´ ìžˆëŠ” ì´ìœ ëŠ” ë™ì¼í•œ ìžë£Œí˜•ì˜ ì§‘í•©ì´ê¸° ë•Œë¬¸ì¸ë°, ì´ê²ƒì€ ìžë£Œí˜•ë§ˆë‹¤ ì •í•´ì§„ ë©”ëª¨ë¦¬ì—ê²Œ ì •í•´ì§„ í¬ê¸°ê°€ ìžˆê¸° ë•Œë¬¸ì´ë©°, ì´ê²ƒì„ í™œìš©í•œê²ƒì´ ë°°ì—´ì˜ Indexìš”ì†Œì´ë‹¤. 
+ì˜ˆì‹œë¡œ, int[] array = int[10] ê°™ì€ ê²½ìš°, intëŠ” 4byteë¡œì˜ ê°’ì´ ì—°ì†ì ìœ¼ë¡œ ë‚˜ì—´ë˜ì–´ ë©”ëª¨ë¦¬ì†ì— ì €ìž¥ì´ ë˜ë©°, ê·¸ë ‡ê¸°ì— ê° ìžë£Œí˜•í¬ê¸°ì˜ ë°°ìˆ˜ë¡œ/  ë°°ì—´ì˜ í¬ê¸°ì— ë”°ë¼ ìžë£Œê°’ì˜ ì´í•©ì˜ ë‚˜ëˆ„ê¸°ë¡œ ë‚˜ëˆ„ê²Œ ë¨ìœ¼ë¡œ ë©”ëª¨ë¦¬ì— ì—°ì†ì ìœ¼ë¡œ ì €ìž¥ëœ ì¼ì •í•œ í¬ê¸°ì˜ ë°ì´í„° ê°’ì„ ì ‘ê·¼í•˜ëŠ” ë°©ì‹ì´ë‹¤. 
 
-¿¬¼ÓÀûÀ¸·Î ÀúÀåµÈ °ªÀ» È°¿ëÇÏ´Â ¿¹½Ã·Î½á, array[3] À» È£ÃâÇÒ¶§¿¡´Â, ÇØ´çº¯¼öÀÇ Á¤ÇØÁø ÀÚ·áÇüÀÇ byte °ªÀÇ 3 À» °öÇÑ °ªÀ» È£ÃâÇÔ¿¡ µû¶ó, 3¹øÂ° ÀÚ¸®¿¡ ÀúÀåµÈ °ªÀ» Ã£À»¼ö ÀÖ°ÔµÈ´Ù. 
-¹®¹ýÀûÀ¸·Ð, array[200] = calling index val which is not initialized, Àº ¸»ÀÌ ¾Æ¿¹¾ÈµÇ´Â°ÍÀº ¾Æ´Ï´Ù. ¶§¹®¿¡, C#¼Ó¿¡¼­´Â ÇØ´ç º¯¼öÀÇ ÀÎµ¦½º Å©±â¿¡ ´ëÇØ ¿¹¿ÜÃ³¸® ±â´ÉÀÌ Æ÷ÇÔµÇ¾î ÀÖ´Ù. 
+ì—°ì†ì ìœ¼ë¡œ ì €ìž¥ëœ ê°’ì„ í™œìš©í•˜ëŠ” ì˜ˆì‹œë¡œì¨, array[3] ì„ í˜¸ì¶œí• ë•Œì—ëŠ”, í•´ë‹¹ë³€ìˆ˜ì˜ ì •í•´ì§„ ìžë£Œí˜•ì˜ byte ê°’ì˜ 3 ì„ ê³±í•œ ê°’ì„ í˜¸ì¶œí•¨ì— ë”°ë¼, 3ë²ˆì§¸ ìžë¦¬ì— ì €ìž¥ëœ ê°’ì„ ì°¾ì„ìˆ˜ ìžˆê²Œëœë‹¤. 
+ë¬¸ë²•ì ìœ¼ë¡ , array[200] = calling index val which is not initialized, ì€ ë§ì´ ì•„ì˜ˆì•ˆë˜ëŠ”ê²ƒì€ ì•„ë‹ˆë‹¤. ë•Œë¬¸ì—, C#ì†ì—ì„œëŠ” í•´ë‹¹ ë³€ìˆ˜ì˜ ì¸ë±ìŠ¤ í¬ê¸°ì— ëŒ€í•´ ì˜ˆì™¸ì²˜ë¦¬ ê¸°ëŠ¥ì´ í¬í•¨ë˜ì–´ ìžˆë‹¤. 
 
-¹è¿­ÀÇ ½Ã°£ º¹Àâµµ 
-¹è¿­¼Ó¿¡¼­´Â, n ¸¸Å­ÀÇ µ¥ÀÌÅÍ°¡ ÀúÀåµÈ ¹è¿­À» Å½»öÇÒ¶§¿¡, °ªÀÇ Á¢±ÙÀº O(1) ÀÌÁö¸¸, ¹è¿­Àº ¼±ÇüÅ½»öÀ» ÅëÇØ¼­ Ã³¸® ÇÏ±â ¶§¹®¿¡ O(n) ¸¸Å­ Å½»öÇÏ°Ô µÇ´Â ½Ã°£complexity °¡ ÀÖ´Ù. 
+ë°°ì—´ì˜ ì‹œê°„ ë³µìž¡ë„ 
+ë°°ì—´ì†ì—ì„œëŠ”, n ë§Œí¼ì˜ ë°ì´í„°ê°€ ì €ìž¥ëœ ë°°ì—´ì„ íƒìƒ‰í• ë•Œì—, ê°’ì˜ ì ‘ê·¼ì€ O(1) ì´ì§€ë§Œ, ë°°ì—´ì€ ì„ í˜•íƒìƒ‰ì„ í†µí•´ì„œ ì²˜ë¦¬ í•˜ê¸° ë•Œë¬¸ì— O(n) ë§Œí¼ íƒìƒ‰í•˜ê²Œ ë˜ëŠ” ì‹œê°„complexity ê°€ ìžˆë‹¤. 
 
 
-±×·³ List ´Â ¾î¶³±î?
-¿ì¼± ÀÚ·á ±¸Á¶Àû °üÁ¡¿¡¼­ ¸Þ¸ð¸®¿¡ ¾î¶²ÇüÅÂ·Î ´Ù·ïÁö°í ÀÖ´ÂÁö »ìÆìº¼ ÇÊ¿ä°¡ÀÖ´Ù. 
-List ÀÇ ÃÖ´ëÅ©±â´Â 64bit Windows ±âÁØ, maximum capacity to 2 billion elements À¸·Î ¼³Á¤µÉ¼öµµ ÀÖ´Ù (ÃÖ´ë Å©±â = Maximum Capacity in List Class)
-Array¿Í ´Ù¸£°Ô ¼±¾ðµÈ ÀÚ·áÇü¿¡ µû¶ó ¹Ì¸® ÀÔ·ÂµÈ Å©±â¿¡ ºñ·ÊÇÑ °íÁ¤µÈ Å©±â¸¦ Èü¿µ¿ª¿¡¼­ °®´Â°ÍÀÌ¾Æ´Ñ, 
-Å©±â¸¦ ÀÓÀÇ·Î ¿ì¼± default¿¡ ÀÇ°ÅÇÏ¿© ¼³Á¤ÇÏ¸ç, (where default = default_Capacity), Count < Capacity »óÅÂ¸¦ À¯ÁöÇÏ±â À§ÇØ 
-¹è¿­ÀÇ Å©±â¸¦ ´Ã¸®°Å³ª ÁÙ¿©°¡¸ç ¿¬¼ÓÀûÀÎ °ªÀ» ´Ù·ê¼ö ÀÖ°Ô ÇÏ¿©ÁØ´Ù. C#¾ð¾î¿¡¼­´Â Array ¿Í ºñ½ÁÇÏ°Ô, ±æÀÌ¿¡ »ç¿ëÇÏ´Â Count ÀÌ»óÀÇ °ªÀ» À¯Àú°¡ °­Á¦·Î È£ÃâÇÑ´Ù¸é C#ÀÚÃ¼¿¡¼­ ¼³Á¤ÇÑ ¿¹¿ÜÃ³¸®¸¦ ÅëÇØ ÅëÁ¦ÇÑ´Ù. 
+ê·¸ëŸ¼ List ëŠ” ì–´ë–¨ê¹Œ?
+ìš°ì„  ìžë£Œ êµ¬ì¡°ì  ê´€ì ì—ì„œ ë©”ëª¨ë¦¬ì— ì–´ë–¤í˜•íƒœë¡œ ë‹¤ë¤„ì§€ê³  ìžˆëŠ”ì§€ ì‚´íŽ´ë³¼ í•„ìš”ê°€ìžˆë‹¤.\
+List ì˜ ìµœëŒ€í¬ê¸°ëŠ” 64bit Windows ê¸°ì¤€, maximum capacity to 2 billion elements ìœ¼ë¡œ ì„¤ì •ë ìˆ˜ë„ ìžˆë‹¤ (ìµœëŒ€ í¬ê¸° = Maximum Capacity in List Class)\
+Arrayì™€ ë‹¤ë¥´ê²Œ ì„ ì–¸ëœ ìžë£Œí˜•ì— ë”°ë¼ ë¯¸ë¦¬ ìž…ë ¥ëœ í¬ê¸°ì— ë¹„ë¡€í•œ ê³ ì •ëœ í¬ê¸°ë¥¼ íž™ì˜ì—­ì—ì„œ ê°–ëŠ”ê²ƒì´ì•„ë‹Œ, \
+í¬ê¸°ë¥¼ ìž„ì˜ë¡œ ìš°ì„  defaultì— ì˜ê±°í•˜ì—¬ ì„¤ì •í•˜ë©°, (where default = default_Capacity), Count < Capacity ìƒíƒœë¥¼ ìœ ì§€í•˜ê¸° ìœ„í•´ \
+ë°°ì—´ì˜ í¬ê¸°ë¥¼ ëŠ˜ë¦¬ê±°ë‚˜ ì¤„ì—¬ê°€ë©° ì—°ì†ì ì¸ ê°’ì„ ë‹¤ë£°ìˆ˜ ìžˆê²Œ í•˜ì—¬ì¤€ë‹¤. C#ì–¸ì–´ì—ì„œëŠ” Array ì™€ ë¹„ìŠ·í•˜ê²Œ, ê¸¸ì´ì— ì‚¬ìš©í•˜ëŠ” Count ì´ìƒì˜ ê°’ì„ ìœ ì €ê°€ ê°•ì œë¡œ í˜¸ì¶œí•œë‹¤ë©´ C#ìžì²´ì—ì„œ ì„¤ì •í•œ ì˜ˆì™¸ì²˜ë¦¬ë¥¼ í†µí•´ í†µì œí•œë‹¤. 
 
-ÀÌ·¸°Ô ÅÂ»ýÀûÀÎ Â÷ÀÌ´Â ¹è¿­À» Ã£´Â ¸Þ¼­µå ¿¡¼­µµ ÃæºÐÈ÷ À¯Ãß°¡ °¡´ÉÇÑµ¥, Array. Length ¿Í List.CountÀ¸·Î½á,
-Array´Â ±¸Çö´ç½Ã Å©±â¿¡ µû¶ó¼­ ¿¬¼ÓÀûÀ¸·Î ¼±¾ðµÈ ÀÚ·áÇüÀÇ Å©±â¿¡µû¶ó ÀúÀåÇÏ´Â°ÍÀÌ±â¿¡ ÇØ´ç ¹è¿­Àº ÀÌ¹Ì ¼±¾ð ¹× »ç¿ëÀÌ °¡´ÉÇÑ »óÅÂÀÌÁö¸¸, 
-List ´Â Capacity µû·Î, Count µû·Î °¡¸ç, °ªÀ» Ãß°¡ÇÒ¶§¸¶´Ù ¹ÝÀÀÇÏ´Â »ç½ÇÀÌ ¸Þ¼­µå ³×ÀÌ¹Ö´ç½Ã ¾î´ÀÁ¤µµ ¹Ý¿µµÈ°ÍÀ» À¯ÃßÇØº¼¼ö ÀÖ´Ù. ( where Count = ~ Array.Length() ) 
-
+ì´ë ‡ê²Œ íƒœìƒì ì¸ ì°¨ì´ëŠ” ë°°ì—´ì„ ì°¾ëŠ” ë©”ì„œë“œ ì—ì„œë„ ì¶©ë¶„ížˆ ìœ ì¶”ê°€ ê°€ëŠ¥í•œë°, Array. Length ì™€ List.Countìœ¼ë¡œì¨,\
+ArrayëŠ” êµ¬í˜„ë‹¹ì‹œ í¬ê¸°ì— ë”°ë¼ì„œ ì—°ì†ì ìœ¼ë¡œ ì„ ì–¸ëœ ìžë£Œí˜•ì˜ í¬ê¸°ì—ë”°ë¼ ì €ìž¥í•˜ëŠ”ê²ƒì´ê¸°ì— í•´ë‹¹ ë°°ì—´ì€ ì´ë¯¸ ì„ ì–¸ ë° ì‚¬ìš©ì´ ê°€ëŠ¥í•œ ìƒíƒœì´ì§€ë§Œ, \
+List ëŠ” Capacity ë”°ë¡œ, Count ë”°ë¡œ ê°€ë©°, ê°’ì„ ì¶”ê°€í• ë•Œë§ˆë‹¤ ë°˜ì‘í•˜ëŠ” ì‚¬ì‹¤ì´ ë©”ì„œë“œ ë„¤ì´ë°ë‹¹ì‹œ ì–´ëŠì •ë„ ë°˜ì˜ëœê²ƒì„ ìœ ì¶”í•´ë³¼ìˆ˜ ìžˆë‹¤. ( where Count = ~ Array.Length() ) \
 and If count = Capacity, copies the following array internally, before relocating into array with bigger capacity; 
 
-Array °¡ ¿¬¼ÓÀûÀÎ °ªÀ¸·Î ÀúÀåµÇ´Â ¶Ç ´Ù¸¥ ÀÌÀ¯´Â ¼±¾ðµÈ Æ¯Á¤ instance¿¡ ´ëÇØ¼­ heap ¿µ¿ª¿¡ ÀúÀåÀÌ µÉ¶§ frag. ÇüÅÂ·Î ÀúÀåµÉ¼ö´Â ¾ø±â ¶§¹®ÀÌ±âµµÇÏÁö ¾ÊÀ»±î »ý°¢ÀÌ µéÁö¸¸, ÀÌ°Ç Á¶±Ý´õ Ã£¾Æº¸±â·Î ÇÏÀÚ 
+Array ê°€ ì—°ì†ì ì¸ ê°’ìœ¼ë¡œ ì €ìž¥ë˜ëŠ” ë˜ ë‹¤ë¥¸ ì´ìœ ëŠ” ì„ ì–¸ëœ íŠ¹ì • instanceì— ëŒ€í•´ì„œ heap ì˜ì—­ì— ì €ìž¥ì´ ë ë•Œ frag. í˜•íƒœë¡œ ì €ìž¥ë ìˆ˜ëŠ” ì—†ê¸° ë•Œë¬¸ì´ê¸°ë„í•˜ì§€ ì•Šì„ê¹Œ ìƒê°ì´ ë“¤ì§€ë§Œ, ì´ê±´ ì¡°ê¸ˆë” ì°¾ì•„ë³´ê¸°ë¡œ í•˜ìž \
 
-To be Cont, Linked Array 
+To be Cont, Linked Array \
 
