@@ -13,7 +13,7 @@ namespace day19_Task
             newLL.AddFirst(2);
             newLL.AddFirst(1);
             //Head = 1 
-
+            Comparison
             newLL.AddLast(5);
             newLL.AddFirst(0);
             // Tail = 3 

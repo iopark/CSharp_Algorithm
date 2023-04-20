@@ -16,6 +16,7 @@
             Test test = new Test(); 
             foreach (int i in test) { Console.WriteLine(i); }
             // prints 0-4 
+            Array.Sort
         }
 
         class Test

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Understanding_ForEach_and_IEnumerable
 {
-    /* apparently, you can technically use foreach if there's, 
+    /* apparently, C#에서는 foreach문은 
      * 1. GetEnumerator() function which must be public, 
      * and a bool Movement() function 
      * and a ?(a nullable) Current get/set property 
