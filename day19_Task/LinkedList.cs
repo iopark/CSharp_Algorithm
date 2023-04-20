@@ -157,19 +157,21 @@ namespace DataStructure
             // 그렇다면, 명령문의 패턴은 node.next == null 해당 조건문으로만 갈라주면 될거 같다. 
             // situation = ||[node.prev]|| [node] [afterNode] [node.next]
 
-            afterNode.prev = node; // 너무너무 헷갈리면 우선 당연하며 논리를 가르는데 도움이 되는것을 확인해보자 
+           
             afterNode.next = node.next; // 노드가 만약 꼬리라면 어떻하지 걱정을 하였지만 쪼금만 생각해보면 같이 null을 가리키기에 문제가 되지 않는다
-            node.next = afterNode; // 노드의 next 값또한 신입노드들 가리키게 진행해준다. 
+             // 노드의 next 값또한 신입노드들 가리키게 진행해준다. 
+            afterNode.prev = node; // 너무너무 헷갈리면 우선 당연하며 논리를 가르는데 도움이 되는것을 확인해보자 
             //node.next = afterNode; // 이건 이제 확인 작업이 필요하다 node.next == null; 
               
-            if (node.next != null) // 이전의 노드의 다음값이 꼬리가 아니었다면, 해당값이 가리키는 곳이 새로운 노드를 향하게 하면 된다
+            if (node.next != null) // 이전의 노드가 꼬리가 아니었다면, 해당값이 가리키는 곳이 새로운 노드를 향하게 하면 된다
             {
-                node.next.prev = afterNode;
+                node.next.prev = afterNode; // 아 이렇게 하면 afterNode.prev 가 afterNode 가 되버리네.. 
             }
             else // 물론 꼬리가 맞다면 그냥 꼬리로 설정하면 된다. 
-
+                tail = afterNode;
                 // 다음을 가리키는 좌표가 null이었다면, 신입을 그냥 꼬리로 세우면 끝이다. 
-                tail = afterNode; 
+
+            node.next = afterNode;
             count++;
             /*한것을 정리해 보자면 이렇다 
              * 0. exception확인 이후
@@ -179,24 +181,33 @@ namespace DataStructure
              * 4. 기준노드의 단짝이었던 값의 한면의 노드를 재정리 해준다. (이때 조건문을 활용하여 주었다) 
              * 5. 이렇게 절차식으로 코드생성을 최소화하고 간략하게 할수있는 방법이 있음을 기억한다! 
              */
+            Console.WriteLine($"{value} has been added after {node.Value}"); 
             return afterNode;
 
         } // Done
         public LinkedListNode<T> AddBefore(LinkedListNode<T> node, T value) 
         {
-            ValidateTest(node);
             LinkedListNode<T> beforeNode = new LinkedListNode<T>(this, value);
+            ValidateTest(node);
+            
             // AddAfter와 비슷하게 생성
             // 지정할것이 명확하여졌을때 간소화작업이 가능해진다 
             // 이는 각 명령별로 효과적이며 확실한 명령만 설정할수있게 도움이 되기 때문이다. 
-            beforeNode.prev = node.prev;
-            beforeNode.next = node; 
-            node.prev = beforeNode;
+           
+            beforeNode.next = node; // beforeNode.next = 5
+            beforeNode.prev = node.prev; // beforeNode.prev = node.prev (
+            
             if (node.prev != null)
+            {
                 node.prev.next = beforeNode;
-            else 
+            }
+            else
+            {
                 head = beforeNode;
-            count++; 
+            }
+            node.prev = beforeNode;
+            count++;
+            Console.WriteLine($"{value} has been added before {node.Value}");
             return beforeNode;
         } // Done 
         public void Clear() 
@@ -321,13 +332,23 @@ namespace DataStructure
         public void RemoveFirst() 
         {
             ValidateTest(head); // set the node as the head, 기본적인 ArgumentisNull/ InvalidOperationException예외처리 완료 
-            Remove(head); 
+            LinkedListNode<T> head_ = head;
+            Remove(head_); 
 
         }
         public void RemoveLast() 
         { 
             ValidateTest(tail);
-            Remove(tail);
+            if (tail.prev != null)
+                tail.prev = tail.prev.prev;
+            else 
+            {
+                tail = null;
+            }// this means there's only one node 
+                
+                
+            tail.prev.next = tail.next;
+            tail.prev = tail; 
         }
         
         /// <summary>
@@ -337,11 +358,11 @@ namespace DataStructure
         /// <returns>매개변수로 입력한 값을 Linked List instance 에 찾은후 반환합니다. 이때 없다면 null을 반환가능합니다 </returns>
         public LinkedListNode<T>? Find (T value) //set as nullable for node can and may return a null. 
         {
-            LinkedListNode<T> search = head;
+            LinkedListNode<T> search = this.Head;
             // 이것은 나의 능력밖, 수업을 참조한다. 
             EqualityComparer<T> comparing = EqualityComparer<T>.Default; // EqualityComparer 의 .Default 는 T의 기본 비교형 기능을 호출하여 비교를 하게 한다. magical. 
             
-            while (search.next != null)
+            while (search.next != null || search == tail)
             {
                 if (comparing.Equals(value, search.Value)) //comparing would summon appropriate Equals depending on the data_type declared on T 
                     return search;
