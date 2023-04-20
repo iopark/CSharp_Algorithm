@@ -16,6 +16,7 @@ namespace DataStructure
  *  교수님한테 확인 받기  으아아아아 저도 코드 잘하고 싶어요 
  */
 
+
     public class LinkedListNode<T>
     {
         internal LinkedList<T>? list;
@@ -292,20 +293,21 @@ namespace DataStructure
             // 하지만 이 접근은 위의 명시한 행위를 무색하게 만드는 가정이 되어버린거 같다 
             
             // 이 두 접근을 합친다면 어떨까?
-            
-            
             if (node == head) // case 1
             {
-                node.next = head; // 이렇게 node의 .next node와의 관계를 아예절단 시킴 
+                // 이렇게 node의 .next node와의 관계를 아예절단 시킴 
+                head = node.next; // 다음노드가 헤드로 설정하여주며, 
             }
             if (node == tail) // case 2
             {
-                node.prev = tail;// 이렇게 node의 .next node와의 관계를 아예절단 시킴 
+                // 이렇게 node의 .next node와의 관계를 아예절단 시킴
+                tail = node.prev; // 다음노드가 테일로 설정하여준다. 
             }
-            if (node.next != null) // 이것이 꼬리가 아니라는 전재에  case 3 
-                node.next.prev = node.prev; 
+            if (node.next != null) // 이것이 꼬리가 아니라는 전재에  case 3 // 또한 지우고하는 노드의 다음노드와 전노드를 이어주는 작업 1 
+                node.next.prev = node.prev;  // 테일 방향의 관계에 대해서 재정립 하여 주며 
             if (node.prev != null) // 이것이 해드가 아니라는 전제에  case 4 
-                node.prev.next = node.next; 
+                node.prev.next = node.next; // 헤드의 방향에서의 단면적인 관계에 대해서 재정립하여 준다. 
+            // 또한 지우고하는 노드의 다음노드와 전노드를 이어주는 작업 2
             // 위에 3,4 의 전제를 절차적으로 돌림으로써 만약 노드가 [node1] [target] [node2] 이런식으로 있다면 통과할수밖에 없는 형식으로도 구성이 가능하다! ㄴㅇㄱ 
             // 이렇게 여과되는 필터처럼 절차형식으로 간단명료하게 명령문을 짤수 있게 된다 
             // 이것을 하려면 원하는 결과에 대해 명확한 기대값이 있어야 하며, 그것은 구체적이여야 한다. 
@@ -315,6 +317,14 @@ namespace DataStructure
             // 어찌됬는 이곳을 통과한다면 노드 정리 뿐만아니라 관계 재배치까지 완료될수있는 코드가 완성이 되게 된다. 
             // 위의 예시는 수업에서따온것임으로, 아직은 나는 어떻게 이렇게까지 할수 있을까 가늠이잘 안되지만, 기존에 존재하는 알고리즘패턴을 알아가며 적용사례를 알아간다면 익숙해지지않을까 생각해본다. 
         } // Done 
+        /* 정리해 보자면, 위의 알고리즘은 2방향 순서로 정리가 된 값들중, 
+         * 1. 왼쪽값에 대해서 정리하고 
+         * 2. 오른쪽값에 대해서 정리하는데 
+         * 1-1. 만약 정리하는 대상이 해드라면 새로운 헤드를 설정하여 주고 
+         * 2-1. 테일이라면 새로운 테일을 설정하여 주고 (남은 노드가 하나더라도 because node = head&tail) 추가 조건문이 필요하지 않으며
+         * 1-2. 왼쪽값이 있다면 해당 노드에 대해서 오른쪽 노드관계를 재설정 하여주었고 
+         * 2-2. 오른쪽 값이 있다면 해당 노드에 대해서 왼쪽 노드관계를 재정립 하여주었다. 
+         */ 
 
         public bool Remove(T value)
         {
@@ -331,17 +341,21 @@ namespace DataStructure
         } // Done 
         public void RemoveFirst() 
         {
-            ValidateTest(head); // set the node as the head, 기본적인 ArgumentisNull/ InvalidOperationException예외처리 완료 
             LinkedListNode<T> head_ = head;
-            Remove(head_); 
+            ValidateTest(head); // set the node as the head, 기본적인 ArgumentisNull/ InvalidOperationException예외처리 완료 
+            Remove(head_);
+            //Remove(head_); 
 
         }
         public void RemoveLast() 
-        { 
+        {
+            LinkedListNode<T> head_ = Head; 
             ValidateTest(tail);
             if (tail.prev != null)
-                tail.prev = tail.prev.prev;
-            else 
+            {
+                tail.prev = null;
+            }
+            else
             {
                 tail = null;
             }// this means there's only one node 
