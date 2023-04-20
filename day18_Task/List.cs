@@ -18,14 +18,12 @@ namespace DataStructure
     {
         private const int DefaultCapacity = 1;
         private T[] items;
-        private int size = 0;
+        private int size; 
 
         public List() 
         { 
-            if( items == null)
-                items = new T[DefaultCapacity ];
-            items = new T[this.size];
-
+            items = new T[DefaultCapacity ];
+            size = 0; 
         }
 
         public void Add(T item)
