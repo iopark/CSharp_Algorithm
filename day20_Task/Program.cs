@@ -15,7 +15,7 @@ namespace day20_Task
      * 2. 자료구조의 평균을 구하는 Average(자료구조) 구현 
      */ 
 
-    internal class Program
+    internal static class Program
     {
 
         // Array, List = IList, 
@@ -34,6 +34,18 @@ namespace day20_Task
 
             return sum / count;
         }
+
+        public static int Max(this IEnumerable<int> container) // 확정매서드: this 를 매개변수에 활용한 사례
+        {
+            int max = int.MinValue; // 우선적으로 가장 낮은 값부터 (int자료형의) 
+            foreach (int item in container)
+            {
+                if (item > max)
+                    max = item; 
+            }
+            return max; 
+        }
+        
         static void Main(string[] args)
         {
             day20_Task.List<int> list = new day20_Task.List<int>(); 
@@ -62,13 +74,10 @@ namespace day20_Task
             }
             //=============================iList================================
 
-            Sort_ sort_ = new Sort_();
 
             int[] array = new int[] { 1, 2, 3, 4, 5 };
             ArrayList arrayList = new ArrayList();
             for (int i = 5; i >= 1; i--) arrayList.Add(i); 
-            sort_.Sort(array);
-            sort_.Sort(arrayList);
 
             foreach (int i in array) Console.WriteLine(i);
             foreach (int i in arrayList) Console.WriteLine(i);
