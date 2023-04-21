@@ -52,5 +52,6 @@ and If count = Capacity, copies the following array internally, before relocatin
 Array 가 연속적인 값으로 저장되는 또 다른 이유는 선언된 특정 instance에 대해서 heap 영역에 저장이 될때 frag. 형태로 저장될수는 없기 때문이기도하지 않을까 생각이 들지만,(전혀 사실이 아니었고) 
 이건 조금더 찾아보기로 하자 (연결 리스트로 바로 반론 개박살)
 
-To be Cont, Linked Array \
+Linked Array 
+
 

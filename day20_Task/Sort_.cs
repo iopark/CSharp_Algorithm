@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace day20_Task
 {
-    public class Sort_
+    public class Sort_<T>
     {
         // TODO:  try to use IComparer at home 
         //protected int val1; 
