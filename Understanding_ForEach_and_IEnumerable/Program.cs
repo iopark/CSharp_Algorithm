@@ -16,7 +16,9 @@
             Test test = new Test(); 
             foreach (int i in test) { Console.WriteLine(i); }
             // prints 0-4 
-            Array.Sort
+            string brackets = "()(";
+            //Console.WriteLine(brackets.Split());
+            foreach (string item in brackets.ToArray()) { Console.WriteLine(item); }
         }
 
         class Test

@@ -19,13 +19,21 @@ namespace Task_DataStructure
     {
         private List<T> list;
 
-
+        public Stack() 
+        {
+            list = new List<T>();
+        }
         public int Count { get { return list.Count; } }
     
         public T this[int index] { get { return list[index]; } set { list[index] = value; } }
         public void Push (T Item)
         {
             list.Add(Item);
+        }
+
+        public void Reverse()
+        {
+            list.Reverse();
         }
         public T Pop ()
         {

@@ -12,10 +12,21 @@
     {
         static void Main(string[] args)
         {
-            Bracket[] brackets = new Bracket[]
+            BracketEvaluator bracketTest = new BracketEvaluator()
             {
-
-            }
+                Bracket_Left = "(",
+                Bracket_Right = ")"
+            };
+            string test1 = "()()";
+            string test2 = "()(()())";
+            string test3 = ")(())(";
+            bracketTest.Test_(test1); 
+            Console.WriteLine(bracketTest.FinalEval);
+            bracketTest.Test_(test2);
+            Console.WriteLine(bracketTest.FinalEval);
+            bracketTest.Test_(test3);
+            Console.WriteLine(bracketTest.FinalEval);
+            Console.WriteLine("========================브라킷 구현 완료 ===========================");
 
         }
     }
