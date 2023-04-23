@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,12 @@ using System.Threading.Tasks;
  * 1. 후위 표기법 방식으로 전환 기능 구현: 컴퓨터는 오른손잡이여서, (안타깝께도), 오른쪽 부터 읽게 되는데, 
  *  a. 이것또한 스택으로 구현이 가능할까..?
  * 2. 변환된 표기법을 적용한 계산기능 구현 
- *      물론 스택으로 
+ * 
+ * 찾아본 결과 후기표기법에 대해서 스택에 응용하는 방식은 이렇다 
+ * 1. 숫자라면 스택에 푸쉬 한다 
+ * 2. 사칙연산 이라면 2개를 팝 하여 계산하고 계산된 값을 넣는데, 
+ * 2-1. 계산할때에 나중에 나오는 녀석이 앞으로 온다. 
+ * 예시. if stack = [x][y], stack.pop = y,x, stack.push(x _ops_ y), not y _ops_ x. 
  */ 
 
 // 스택의 기능 
@@ -28,69 +34,113 @@ namespace day21_Task
 {
     public class Calculator
     {
-        class StringConverter // 스트링 값을 받아서 스택에 정리하기 위해서 기호, 숫자를 정렬하기 위한 객체 
+        protected int stackTop = 0;
+        protected int stackBottom = 0;
+        protected int postOps;
+
+        public string postFixExpression { get; set; }
+
+        private void minus()
         {
-            protected string target { get; set; }
-            protected Stack<string> segment { get; set; }
-            protected (string, Ops_Priority) segment_barcode;
+            postOps = stackBottom - stackTop;
+        }
 
-            public enum Ops_Priority
+        private void plus()
+        {
+            postOps = stackBottom + stackTop;
+        }
+
+        private void div()
+        {
+            postOps = stackBottom / stackTop;
+        }
+
+        private void mult()
+        {
+            postOps = stackBottom * stackTop;
+        }
+
+        private void AssignValue(int top, int bottom)
+        {
+            stackTop = top;
+            stackBottom = bottom;
+        }
+
+        
+    }
+    class PostFixConverter // 스트링 값을 받아서 스택에 정리하기 위해서 기호, 숫자를 정렬하기 위한 객체 
+    {
+        //우선 욕심 내려놓고, 괄호 기능은 거세한 사칙연산에 대해서만 똑똑한 계산기 구현 
+        // 지금 부터 제작할 후기표기법은 위의 스택의 계산기의 형태에 맞게 계산할수 있도록 정리해주는 역할을 수행해야 한다.
+        // 따라서 이와같은 규칙으로 왼쪽에서 오른쪽으로 스택에 정렬될 값을 나열하는 객체를 생성한다. 
+        // 1. 먼저 수행되야할 연산을 추출하고 기존연산규칙에 따라 순위를 매긴뒤 왼쪽에서 오른쪽으로 차례대로 나열한다. 
+        // 2-1 . 만약 */ 둘중 하나라면 오른쪽값이 스택에 들어간후 바로 대입한다 
+        // 2-2. 만약 +- 둘중 하나라면, 오른쪽값 대입 이후에도 */가 없다면 대입, 있다면 */가 소진될때까지 보관된다. 
+        // 그리해서 완료된 식은 스트링 형식으로 스택 계산기를 위해 전달한다. 
+
+        protected string target { get; set; }
+        protected Stack<string> segment { get; set; }
+        protected (string, Ops_Priority) segment_barcode;
+
+
+        public enum Ops_Priority
+        {
+            plusminus = 0,
+            divmult = 1,
+            bracket = 2,
+            number = -1
+        }
+
+
+        //public void GetSegment(char ops) 
+        //{
+        //    while (!Op_Identifier(ops))
+        //    {
+        //        this.segment.Add(ops);
+        //    }
+
+        //}
+
+        // 캐릭터 들을 모아서 하나의 숫자를 반환하여줍니다 
+        //public List<string> SortList(string segment)
+        //{
+
+        //    segment = segment.Split("*"); 
+
+        //}
+        public bool Op_Identifier(string expression)
+        {
+            StringSplitOptions
+            foreach(var op in segment) { }
+            switch (ops)
             {
-                plusminus = 0, 
-                divmult =1, 
-                bracket = 2, 
-                number = -1
+                case '+':
+                case '*':
+                case '-':
+                case '/':
+                    return true;
+                default:
+                    return false;
             }
-
-
-            //public void GetSegment(char ops) 
-            //{
-            //    while (!Op_Identifier(ops))
-            //    {
-            //        this.segment.Add(ops);
-            //    }
-
-            //}
-
-            // 캐릭터 들을 모아서 하나의 숫자를 반환하여줍니다 
-            //public List<string> SortList(string segment)
-            //{
-                
-            //    segment = segment.Split("*"); 
-
-            //}
-            public bool Op_Identifier(char ops)
+        }
+        public Ops_Priority Categorize(char ops)
+        {
+            switch (ops)
             {
-                switch (ops)
-                {
-                    case '+':
-                    case '*':
-                    case '-':
-                    case '/':
-                        return true; 
-                    default:
-                        return false;
-                }
-            }
-            public Ops_Priority Categorize(char ops)
-            {
-                switch (ops)
-                {
-                    case '+':
-                    case '-':
-                        return Ops_Priority.plusminus;
-                    case '*':
-                    case '/':
-                        return Ops_Priority.divmult;
-                    case '(':
-                    case ')':
-                        return Ops_Priority.bracket;
-                    default:
-                        return Ops_Priority.number;
-                }
+                case '+':
+                case '-':
+                    return Ops_Priority.plusminus;
+                case '*':
+                case '/':
+                    return Ops_Priority.divmult;
+                case '(':
+                case ')':
+                    return Ops_Priority.bracket;
+                default:
+                    return Ops_Priority.number;
             }
         }
     }
 
-    
+
 }
