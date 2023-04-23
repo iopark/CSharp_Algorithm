@@ -17,7 +17,7 @@ namespace Task_DataStructure
     // 개발자를 하겠다는 나의 선택과 모순된다. ㄷ; 
     public class Queue<T> // 일반화 
     {
-        private const int DefaultCapacity = 4;
+        protected int DefaultCapacity = 4;
 
         public T[] array;
         private int head; // 값을 반환할 키 (포인터)
@@ -35,8 +35,9 @@ namespace Task_DataStructure
             }
         }
 
-        public Queue()
+        public Queue(int cap)
         {
+            //this.DefaultCapacity = cap; // 요세푸스문제를 위해 고정된 선형구조의 큐 생성 
             array = new T[DefaultCapacity + 1];  // +1 to seperate head and tail 
             head = 0;
             tail = 0;
@@ -49,10 +50,13 @@ namespace Task_DataStructure
                 Grow();
                 Console.WriteLine("Grow!");
             }// 고전 스타일 큐는 배열이 가득찼다면 더이상 사용이 안되었었다
-
+            // 놀랍게도 요세푸스 문제를 풀면서 알게된 사실은, 
+            // Grow 를 했을때의 장점을 이전에는 그저 배열을 리스트같이 사용하는것처럼 느껴졌으나, 
+            // 반은 맞고 반은 틀렸다. Enqueue 와 Dequeue 의 호출비율에 따라서 나선형의 소용돌이 처럼 늘어나는것도 (마치 무한대의 리스트처럼) 도 가능하나, 
+            // 동시에 끝점이 이어져 돌림판처럼 돌수있게 해주는 부분이었다. 
+            // 나선형을 만들어야된다면 이처럼 구현할수 있지않을까 생각도 드는 부분이다. 
             //throw new InvalidOperationException();
             array[tail] = item;
-            Console.Write("tail");
             MoveNext(ref tail);
 
         }
@@ -65,7 +69,6 @@ namespace Task_DataStructure
             if (IsEmpty())
                 throw new InvalidOperationException();
             T result = array[head];
-            Console.Write("head");
             MoveNext(ref head);
             return result;
         }
@@ -84,12 +87,11 @@ namespace Task_DataStructure
         {
             if (index == array.Length - 1)
             {
-                Console.WriteLine($" is cycling back to 0");
                 index = 0;
             }
             else
             {
-                Console.WriteLine($" {array.Length} is moving to the right");
+                Console.WriteLine($"H:{head} T:{tail}");
                 index = index + 1;
             }
 
@@ -102,9 +104,10 @@ namespace Task_DataStructure
         private bool IsFull()
         {
             if (head > tail)
-                return head == tail + 1;
+                return head == tail + 1; // 만약 해드가 테일보다 앞에 있다면, (기본적인 전제가 head 와 tail 은 한칸 간격으로 분리되어있는데, (가득찬 상태를 만들어주기 위한 밑작업), 
+                                            // 해드가 만약 앞에 있다면 이는 이미 둘중하나는 순환을 돌았다는 반증이기에, 이후에 tail +1 값과 head 값이 같다면 Enqueue가 DeQeue 대비 너무 많은 상황일것이다. 
             else
-                return (Count == array.Length - 1) && (tail == array.Length - 1);
+                return (Count == array.Length - 1) && (tail == array.Length - 1); // 증식가능한 큐에서는, 더이상 head 가 0인 상황을 고려하지 않아도 된다, 다만, 그대신 count 자체가 가득찼다면으로 대체함으로써
             //   T                              T 
             //else
             //    return head == 0 && tail == array.Length - 1; //  [ ][h][2][4][5][t]
@@ -116,7 +119,7 @@ namespace Task_DataStructure
             T[] growArray = new T[array.Length * 2];
             if (head < tail) // 그냥 복사하는것이 크게 문제가 되지는 않는다 
                 Array.Copy(array, 0, growArray, 0, Count);
-            else // tail < head [][t][][h][2][3] 
+            else // tail < head [][t][][h][2][3]  // 만일 tail 이 head 뒤에 있는 상황에서 단순복사는 null값에 대해서 무방비하게 되는데, 
                  // newArray = [][t][][][h][2][3][][] // 일때 h가 1,2,3 처리후 그 뒤의 남은 값을 처리할때 문제가 발생하게 된다 
             {
                 Array.Copy(array, head, growArray, 0, array.Length - head); // 이때 원본의 해드부터 끝까지를 처음으로 복사해주고 

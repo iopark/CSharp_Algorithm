@@ -108,6 +108,11 @@ namespace day21_Task
             Console.WriteLine(stringBuilder.ToString()); 
         }
 
+        /// <summary>
+        /// 바구니들을 정리후, 남은것이 있다면 무엇인지 보고, 
+        /// 남은것이 없다면 짝이 모두 정리됬다고 결론을 내린다. 
+        /// </summary>
+        /// <param name="stack"></param>
         private void BracketFinalCheck(Task_DataStructure.Stack<string> stack)
         {
             if (stack.Count > 0)
@@ -115,17 +120,26 @@ namespace day21_Task
                 FinalEval = false;
                 Console.WriteLine($"{stack.Count}가 아직 남았고, {printTest(stack)} 가 있네요"); 
             }
-
             else 
                 FinalEval = true;
             return;    
         }
 
+        /// <summary>
+        /// 본래 바구니가 잘 확인되는지 테스터 전용 기능 구현 
+        /// </summary>
+        /// <param name="bracket"></param>
+        /// <returns></returns>
         private bool L_Trigger (string bracket)
         {
             return bracket == Bracket_Left;
         }
 
+        /// <summary>
+        /// 개발 도중 바구니들이 잘 확인 되고 있는지 검사용 기능 구현 
+        /// </summary>
+        /// <param name="stack"></param>
+        /// <returns></returns>
         private string printTest(Task_DataStructure.Stack<string>stack)
         {
             StringBuilder stringBuilder = new StringBuilder();
