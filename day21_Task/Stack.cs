@@ -13,6 +13,8 @@ namespace Task_DataStructure
     /// Stack 은 리스트와 많이 유사하지만 인덱스의 지정방식이 박스형이라는 차이점이 있기에, 어댑터 패턴을 이용한다 
     /// 어댑터 패턴 이용시 주의사항은 Adapter-Adaptee 기준, Big-O 가 달라지게 되면 RedFlag 1, 
     /// Big-O 가 달라졌고 해당 기능의 역할에 따라, 악화된 Big-O와 직접적인 연관이 있다면 RedFlag 2, 로 차라리 다른 Adapter를 선정하거나, 그라운드 부터 새로 작성하는게 지향된다. 
+    /// 밑의 예시처럼 스택 자체는 역할때문에 사용되는 곳이 많게 되는데, 레거시 코드를 가져다가 약간의 수정을 통하여 새로운 기능을 수행하는 또다른 객체를 생성하게 된다. 
+    /// 기능 자체가 수정되었지만, 자료구조적으로 메모리에 미치는 영향은 레거시 코드와 크게 다른바가 없다는것도 주목해볼 필요가 있다. 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Stack<T> : IEnumerable<T>
@@ -83,7 +85,9 @@ namespace Task_DataStructure
         {
             return new Enumerator(this);
         }
-
+        /// <summary>
+        /// Stack의 구조적인 이해와, 반복기의 추가적인 이해를 위해 스택을 위한 반복기 재정의를 실시한다. 
+        /// </summary>
         public struct Enumerator : IEnumerator<T>
         {
             private int index;
@@ -96,7 +100,7 @@ namespace Task_DataStructure
             {
                 this.stack = stack;
                 this.current = default(T);
-                this.index = stack.Count-1; 
+                this.index = stack.Count-1; // 리스트와는 다르게 반복기 또한 스택의 동작형태로 값을 접근해야 하기에, 이와같이 시작점 또한 최상단(최 우측) 값으로 지정한다 
             }
             public T Current => current;
 
@@ -111,7 +115,7 @@ namespace Task_DataStructure
             {
                 if (index >= 0)
                 {
-                    current = stack[Index--];
+                    current = stack[Index--]; // pre-Iterator 으로써 foreach를 고려하며 current 값은 MoveNext 이전값을 반환하게 설정한다. 
                     return true;
                 }
                 else

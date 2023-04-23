@@ -155,7 +155,7 @@ namespace day21_Task
         {
             IntoStack(expression);
             SortStack();
-            if (midShutDown == true)
+            if (midShutDown == true) // 개발 단계에서 혹여나 중간 과정에서 결함이 있기를 판단하기 위한 수단 
             {
                 Console.WriteLine("Something went wrong while making this");
             }
@@ -164,7 +164,7 @@ namespace day21_Task
         public void IntoStack(string expression)
         {
             StringBuilder sb = new StringBuilder();  
-            string[] temp = expression.ToCharArray().Select(x => x.ToString()).ToArray();
+            string[] temp = expression.ToCharArray().Select(x => x.ToString()).ToArray(); // char 은 합체하게 됬을때 기본적으로 int 값을 반환하기 때문에 string으로 미리 형변환을 진행합니다 
             foreach (string c in temp)
             {
                 stack.Push(c);
@@ -174,7 +174,7 @@ namespace day21_Task
                     Op_Stack(c); //연산자 스택에 새로 값 추가 
                 }
             }
-            stack.Reverse();
+            stack.Reverse(); // 넣은 기준으로 다시 한번 재정열을 해야하기에 역스택을 실행합니다. 
             return;
         }
 
@@ -195,13 +195,28 @@ namespace day21_Task
             }
             FinalOps(newStack, tempOpsStack);
         }
-
+        /// <summary>
+        /// 연산식에 대해서 후위표기법에 맞게 입력하기 위한 기능이다. 연산기호리스트 기준으로, 그전의 
+        /// </summary>
+        /// <param name="ops"></param>
+        /// <param name="count"></param>
+        /// <param name="newStack"></param>
+        /// <param name="tempOpsStack"></param>
         public void PopOps(string ops, ref int count, Task_DataStructure.Stack<string> newStack, Task_DataStructure.Stack<string> tempOpsStack) // 스택속에 연산자에 대한 처리 방법 구현 
         {
             if (count != 0 && ops_type.Count != count) // 만약 카운팅 하는것이 처음이라면 연산값이 스택에 들어가선 안되며, 마지막수라면 스택에 추가하면 안되기 때문이다.  
             {
-                if (ops_type[count-1] != 0) // 해당 연산자가 * 혹은 / 이라면 
+                if (ops_type[count-1] != 0) // 이전 연산자가 * 혹은 / 이라면 
                 {
+                    while (tempOpsStack.Count > 0) // 저장 되있던 있는값을 전부 새로 정렬될 스택으로 넣습니다 
+                    {
+                        newStack.Push(tempOpsStack.Pop());
+                    }
+                    tempOpsStack.Push(ops);
+                    count++;
+                }
+                else if (ops_type.Count -1 >= count + 1 && ops_type[count+1] != 1 && ops_type[count] != 1) // 해당 연산자와 다음 연산자가 * 또는 / 가 아니며, count 를 늘려도 인덱스 에러가 발생하지 않는경우, 
+                { // 해당 조건문의 존재하는 가장 큰 이유는 + - 를 때에 따라서 사용하게 해주기 위함이다. 
                     while (tempOpsStack.Count > 0) // 저장 되있던 있는값을 전부 새로 정렬될 스택으로 넣습니다 
                     {
                         newStack.Push(tempOpsStack.Pop());
@@ -221,10 +236,14 @@ namespace day21_Task
                 tempOpsStack.Push(ops);
             }
         }
-
+        /// <summary>
+        /// // 설계에서의 구조적인 문제로 인해 마지막 연산식에 대해서 추가하는 기능이다. 
+        /// </summary>
+        /// <param name="newStack"></param>
+        /// <param name="tempOpsStack"></param>
         public void FinalOps(Task_DataStructure.Stack<string> newStack, Task_DataStructure.Stack<string> tempOpsStack)
         {
-            if (tempOpsStack != null)
+            if (tempOpsStack != null) 
             {
                 while (tempOpsStack.Count > 0) { newStack.Push(tempOpsStack.Pop()); }
             }
@@ -232,9 +251,9 @@ namespace day21_Task
 
         public void PopNumber(Task_DataStructure.Stack<string> stack, ref StringBuilder temp_)
         {
-            if (int.TryParse(stack.Peek(), out int test)) // 만약 마지막 으로 넣었던 값이 숫자였는지 검사하고
+            if (int.TryParse(stack.Peek(), out int test)) // 해당 기능이 존재하는 가장 큰 이유는 아무래도 처음 char 로 쪼갤때 2자리수 이상의 숫자에 대해서 다루기 위함이다. 
             {
-                temp_.Append(stack.Pop()); // 맞다면 일시저장소 값과 통합한다. 이는 만약 숫자가 2자리수 이상이라면 다음 연산전까지 값을 계속 
+                temp_.Append(stack.Pop()); // 맞다면 일시저장소 값과 통합한다. 2자리수 이상의 값은 먼저 저장하고 스택에 하나의 string으로 반환한다. 
                 stack.Push(temp_.ToString());
             }
             else // 아니라면 일시 저장소는 다시 빈칸으로 만듭니다 
@@ -265,14 +284,15 @@ namespace day21_Task
                 case "+":
                 case "-":
                     //operations.Enqueue(operation);
-                    ops_type.Add(0); 
-                    isPlusMinus++;
+                    ops_type.Add(0); // 해당값이 0 이거나 1 로 구분하는것이 중요한 이유는 후위표기법에서는 기본적으로 +- 는 */ 의 존재유무에 따라 순서가 결정되기 때문이다. 
+                    //isPlusMinus++; // 
                     break;
                 case "*":
                 case "/":
                     //operations.Enqueue(operation);
-                    ops_type.Add(1);
-                    isDivMultiple++;
+                    ops_type.Add(1); // 따라서 이와같이 해당 연산기능의 순위를 매긴다면 스택에 재정립할때에 후순위로 넣을지, 먼저 넣을지 판단하는기능을 도입할때 쉬워지게 된다. 
+
+                    //isDivMultiple++;
                     break;
                 default:
                     Console.WriteLine("Invalid symbol has entered!"); 
