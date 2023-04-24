@@ -11,7 +11,7 @@ namespace _06._Heap
         // 
         static void PriorityQueue()
         {
-            PriorityQueue<string, int> pq = new PriorityQueue<string, int>();
+            DataStructure.PriorityQueue<string> pq = new DataStructure.PriorityQueue<string>();
 
             pq.Enqueue("감자", 3); // 이때 int 는 우선순위대상으로 가늠이 되는값이면 된다. (?)
             pq.Enqueue("양파", 5);
