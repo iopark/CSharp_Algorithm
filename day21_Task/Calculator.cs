@@ -54,7 +54,7 @@ namespace day21_Task
                 string frag = stack.Pop();
                 SegmentIdentifier(frag);
             }
-            Console.WriteLine($"Calculation is done, the final value is {calculation.Peek()}");
+            Console.WriteLine($"Calculation is done, 소수점 3자리로 고정됩니다 {calculation.Peek():F3}");
         }
 
         public void SegmentIdentifier(string identifier)
@@ -208,9 +208,16 @@ namespace day21_Task
             {
                 if (ops_type[count-1] != 0) // 이전 연산자가 * 혹은 / 이라면 
                 {
-                    while (tempOpsStack.Count > 0) // 저장 되있던 있는값을 전부 새로 정렬될 스택으로 넣습니다 
+                    if (ops_type[count] == 1)
                     {
                         newStack.Push(tempOpsStack.Pop());
+                    }
+                    else
+                    {
+                        while (tempOpsStack.Count > 0) // 저장 되있던 있는값을 전부 새로 정렬될 스택으로 넣습니다 
+                        {
+                            newStack.Push(tempOpsStack.Pop());
+                        }
                     }
                     tempOpsStack.Push(ops);
                     count++;

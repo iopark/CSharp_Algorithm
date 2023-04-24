@@ -31,7 +31,9 @@
             PostFixConverter converter = new PostFixConverter();
             PostFixConverter converter2 = new PostFixConverter();
             string test4 = "1+2*3+4*5"; // 27
-            string test5 = "1+2+3+4*5+6"; //32
+            //string test5 = "1+2+3+4*5+6"; //32
+            //string test5 = "1+2*3+4*5+6/3*5-4"; // 33
+            string test5 = "1+2*3+4*5+6/3*5/3/5-4"; // 23.6667
             converter.GeneratePostFix(test4);
             converter2.GeneratePostFix(test5);
             Task_DataStructure.Stack<string> testrun = converter.newStack;
