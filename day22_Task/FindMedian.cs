@@ -34,6 +34,12 @@ namespace day22_Task
             this.ascHeap = ascHeap;
         }
 
+        public void Run(int val)
+        {
+            UpdatePQ(val);
+            BalanceHeap();
+            UpdateMedian(); 
+        }
         //우선순위 큐의 특성상 가장 우선순위가 상위인 값이 조상노드로 설정됨으로 (Dequeue이후에도 힙정렬이 된다) 
         // 오름차의 첫번째 값은 가장 낮은 값이겠고, 
         // 내림차의 첫번째 값은 가장 높은값이겠다. 
@@ -65,17 +71,23 @@ namespace day22_Task
         }
         public void UpdateMedian ()
         {
-            int tempMax = descHeap.Max(); 
-            int tempMin = ascHeap.Min();
+            
             // 중간값의기준 1:만약 오름차와 내림차가 같다면, 
             // 2. 만약 오름차가 내림차보다 많다면 
-            if (desc.Count > asc.Count) // 만약 내림차의 힙이 오름차 보다 더 많은 값을 저장하고 있다면, 
+            if (desc.Count == asc.Count) // 만약 오름차와 낮은차의 카운트가 같다면, 입력받은 숫자는 even 임으로, 마지막 2미디언의 중간값이 median 이다. 
             {
-                Max = tempMax; 
+                int tempMax = descHeap.Max();
+                int tempMin = ascHeap.Min();
+                median = (float)(tempMax+tempMin )/2;
+            } 
+            else if (desc.Count > asc.Count) // 만약 내림차의 힙이 오름차 보다 더 많은 값을 저장하고 있다면,  
+            {
+                median = desc.Peek(); 
             }
-
-            this.Max = descHeap.Max(); 
-            this.Min = ascHeap.Min();
+            else if (desc.Count < asc.Count)
+            {
+                median = asc.Peek();
+            }
         }
 
 

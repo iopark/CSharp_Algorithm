@@ -67,11 +67,25 @@
                 Console.WriteLine(nerf_List.Dequeue());
         }
 
+        public static void FindM ()
+        {
+            DescHeap descHeapify = new DescHeap();
+            AscHeap ascHeapify = new AscHeap();
+            Findmedian fmedian = new Findmedian(descHeapify, ascHeapify);
+
+            int[] test = { 1, 3, 9,8, 10, 5, 7 }; // 1,3,5,7,8,9,10
+            foreach (int item in test) fmedian.Run(item);
+
+            Console.WriteLine(fmedian.median);
+
+
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
             PriorityQueue();
             Emergency();
+            FindM();
         }
 
 
