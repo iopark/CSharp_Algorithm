@@ -1,4 +1,5 @@
-﻿using System.Net.NetworkInformation;
+﻿using DataStructure;
+using System.Net.NetworkInformation;
 
 namespace _06._Heap
 {
@@ -37,6 +38,10 @@ namespace _06._Heap
             // 따라서 b-a 라면, asc 와 반대 기준으로 정렬을 하게 된다. 
             // 이는 comparer 의 (return int 값이 0 > 이라면 우측값을 앞으로 배치하기 때문이다. 
 
+        }
+        static void Test()
+        {
+            PriorityQueue<int> test = new PriorityQueue<int>();
         }
 
 

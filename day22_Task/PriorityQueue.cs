@@ -48,39 +48,40 @@ namespace Task_DataStructure
         public void Enqueue(TElement element, int priority)
         {
             // 새로운 값 생성시, 해당 값은 자연스럽게 리스트의 마지막에 추가가 된다.
-            Node newNode = new Node();
-            newNode.element = element;
-            newNode.priority = priority;
-
-            //nodes[Count-1] = newNode;
+            Node newNode = new Node (){ element = element, priority = priority };
+        
+            nodes.Add(newNode);
             int newIndex = nodes.Count - 1;
 
             while (newIndex > 0)// 만약 새로운 인덱스값이 0이라면 최초값이기에, 힙정렬을 진행할 이유가 전혀 없을것이다. 
             {
-                int parentIndex = GetParentNode(newIndex); 
+                int parentIndex = GetParentNode(newIndex); // 부모노드와 비교하게 위해 인덱스값을 갱신합니다 
                 Node parent = nodes[parentIndex];
 
                 if (newIndex < nodes.Count)// 멀쩡한 인덱스 값이라면 (List 에서), List의 카운트 보다 항상 작을것이다. // 매우 간단하게 정상적인 index값인지 확인하는 방법이다.  
                 {
-                    if (nodes[newIndex].priority < nodes[parentIndex].priority)
+                    if (nodes[newIndex].priority < nodes[parentIndex].priority) // 신입의 priority 값이 더 낮다면 더 우선순위가 높기때문에 부모노드와 교환합니다. 
                     {
-                        nodes[parentIndex] = nodes[newIndex];
-                        nodes[newIndex] = newNode;
-                        parentIndex = newIndex;
+                        nodes[newIndex] = nodes[parentIndex];
+                        nodes[parentIndex] = newNode;
+                        newIndex = parentIndex;
                     }
-                    else // 더이상 신입이 상위 노드보다 위에 있지 않다면 힙상태 도달 완료 (where Top.Priority > Mid.Priority > Low.Priority) 
-                        break;
+                    else // 더이상 신입이 상위 노드보다 위에 있지 않다면 힙상태 도달 완료 (where Top.Priority > Mid.Priority > Low.Priority), 힙정렬이 더이상 요하지 않게 됨
+                        break; // 
                 }   
             }
         }
 
         public TElement Dequeue()
         {
+            if ( nodes.Count == 0 )
+                throw new IndexOutOfRangeException();
             Node ancestor = nodes[0]; // 우선 밖으로 추출할 조상님 저장 (구조체로) 
-            Node lastNode = nodes[nodes.Count - 1];
+            Node lastNode = nodes[nodes.Count - 1]; // 다시 힙정렬을 위해서 마지막값을 최상위로 호출 
             nodes[0] = lastNode; //힙정렬을 위하여 마지막 값에 저장된 값을 맨앞으로 부르고, 위에서부터 아래로 힙정렬 시전 
+            nodes.RemoveAt(nodes.Count - 1);
             int root = 0; 
-            while (root < nodes.Count)
+            while (root < nodes.Count) // 힙정렬하고 있는 인덱스가 정상이라면 루프를 계속해서 반복한다. 
             {
                 int L_Index = LChildIndex(root);
                 int R_Index = RChildIndex(root);
@@ -90,9 +91,8 @@ namespace Task_DataStructure
                     int target = nodes[L_Index].priority < nodes[R_Index].priority ? L_Index : R_Index;
                     if (nodes[target].priority < nodes[root].priority)
                     {
-                        nodes[target] = nodes[root];
-                        nodes[root] = lastNode;
-                        target = root;
+                        nodes[root] = nodes[target];
+                        nodes[target] = lastNode;
                         root = target;
                     }
                     else
@@ -104,15 +104,14 @@ namespace Task_DataStructure
                 {
                     if (nodes[L_Index].priority < nodes[root].priority)
                     {
-                        nodes[L_Index] = nodes[root];
-                        nodes[root] = lastNode;
-                        L_Index = root;
+                        nodes[root] = nodes[L_Index];
+                        nodes[L_Index] = lastNode;
                         root = L_Index;
                     }
-                    else
+                    else// 더이상 하위클래스가 없다면 힙정렬이 끝났음을 전제로 알고리즘을 탈주한다. 
                         break;
                 }
-                else
+                else // 더이상
                     break; 
                 // Case 3. 하위노드가 없다. 
             }
