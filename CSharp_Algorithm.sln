@@ -23,9 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_05._Queue", "_05._Queue\_0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day21_Task", "day21_Task\day21_Task.csproj", "{28ADB12E-7818-4741-ABB4-C0B32C6F9FF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_06._Heap", "_06._Heap\_06._Heap.csproj", "{8B40E2DF-B5AA-4C85-984C-BEAC7B246308}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_06._Heap", "_06._Heap\_06._Heap.csproj", "{8B40E2DF-B5AA-4C85-984C-BEAC7B246308}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day22_Task", "day22_Task\day22_Task.csproj", "{9CA347BC-8566-4BBA-BFCB-D894BD47643A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day22_Task", "day22_Task\day22_Task.csproj", "{9CA347BC-8566-4BBA-BFCB-D894BD47643A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_07._Tree", "_07._Tree\_07._Tree.csproj", "{6A0A75A3-9DDE-47A9-BE06-FCE79AAAB0C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{9CA347BC-8566-4BBA-BFCB-D894BD47643A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CA347BC-8566-4BBA-BFCB-D894BD47643A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CA347BC-8566-4BBA-BFCB-D894BD47643A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0A75A3-9DDE-47A9-BE06-FCE79AAAB0C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0A75A3-9DDE-47A9-BE06-FCE79AAAB0C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0A75A3-9DDE-47A9-BE06-FCE79AAAB0C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0A75A3-9DDE-47A9-BE06-FCE79AAAB0C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
