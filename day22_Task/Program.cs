@@ -43,12 +43,35 @@
             // 이는 comparer 의 (return int 값이 0 > 이라면 우측값을 앞으로 배치하기 때문이다. 
 
         }
+        public static void Emergency()
+        {
+            Console.WriteLine("탑라인에 오신걸 환영하네. 이곳에는 환자들이 많지. 가장 심각한친구들먼저 들여보내야만하네");
+            Task_DataStructure.PriorityQueue<string> nerf_List = new Task_DataStructure.PriorityQueue<string>();
+            Patient[] patients = new Patient[]
+            {
+                new Patient("제이스", Patient.Status.Delayed),
+                new Patient("가렌", Patient.Status.Expectant), 
+                new Patient("베인", Patient.Status.Urgent),
+                new Patient("티모", Patient.Status.Immediate), 
+                new Patient("나서스", Patient.Status.Delayed)
+            };
+            Patient newPatient = new Patient("카밀",Patient.Status.Immediate);
 
+            
+            foreach (Patient pat in patients)
+            {
+                nerf_List.Enqueue(pat.name, (int)pat.status); 
+            }
+            nerf_List.Enqueue(newPatient.name, ((int)newPatient.status));
+            while (nerf_List.Count > 0)
+                Console.WriteLine(nerf_List.Dequeue());
+        }
 
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
             PriorityQueue();
+            Emergency();
         }
 
 

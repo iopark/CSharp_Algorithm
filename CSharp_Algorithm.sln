@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day21_Task", "day21_Task\da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_06._Heap", "_06._Heap\_06._Heap.csproj", "{8B40E2DF-B5AA-4C85-984C-BEAC7B246308}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day22_Task", "day22_Task\day22_Task.csproj", "{9CA347BC-8566-4BBA-BFCB-D894BD47643A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day22_Task", "day22_Task\day22_Task.csproj", "{9CA347BC-8566-4BBA-BFCB-D894BD47643A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
