@@ -1,6 +1,6 @@
-# Binary Search Tree C# Language
+# Heap, or Priority Queue C# Language
 
-### Part of the Lecture Learning: Data Structure and Algorithmic Thinking
+### Part of the Lecture Learning: Data Structure and Algorithmic Thinking, Day 22
 
 #### <b>Prepping for the Technical Interview</b>
 
