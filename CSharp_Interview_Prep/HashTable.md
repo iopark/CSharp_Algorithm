@@ -4,11 +4,9 @@
 
 #### <b>Prepping for the Technical Interview</b>
 
-1. 이진 탐색 트리의 한계점 
-2. 한계점에 대한 극복 방법 
-3. 이진탐색트리의 순회 방법과 순회 순서 
-Source: https://www.freecodecamp.org/news/binary-search-tree-traversal-inorder-preorder-post-order-for-bst/, and Lecture Learning from Day 23: Binary Search Tree
-
+2. 해싱과 해시함수에 대한 조사 (해시의 원리, 해싱함수의 효율, 등) 
+3. 해시테이블의 충돌과 충돌 해결 방안 
+Source: Lecture Learning from Day 24: Hash Table 
 ## 1. 한계점 
 값을 기준으로 Left < 노드 < Right 규칙을 지키게 되었을때 대부분의 경우 O(Log N)의 시간 복잡도로, 기존의 List 의 O(N)대비 획기적으로 계층으로 구별할수있는 값들에 대해 접근/삽입/삭제/탐색하게 해주지만
 

@@ -27,6 +27,8 @@ where Search in Worst Case could be ~(O(n)).
 한계점이 불균형된 저장이라면, Red/Black Tree, 그리고 AVL Tree 가 있다. 
 이 둘의 공통점은 각자 다른 규칙으로 루트부터 Left Subtree, Right Subtree의 Root 에서 Leaf 까지 불균형이 존재하는지 확인하고, 불균형이 존재한다면 L < Node < R (in terms of Value) 가 깨지지않는 선에서 노드값들을 우회전, 또는 좌회전 하여 (노드 관계를 재정립하며) 불균형이 생기는걸 방지한다.
 
+추가적으로 알아낸 사실은 불균형의 문제를 보완한 SortedDict 와 SortedSet 같은 경우, 예전에는 Red/Black Tree 로 구성된 적이 있었지만, 시간이 지나며, 더 시간복잡도 적으로 효율이 뛰어나는 B, 그리고 B+ Tree 로 구성이 되게 되었다. 
+
 ## 3. Binary Search Tree Traversal Order 
 (Where Traversing means 1. Visiting the selected Data, 2. Outputting/ Extracting the relavant data from the selected datum)\
 Selecting a method of traversal means selecting specific route to traverse through the tree data structure. 
