@@ -1,49 +1,72 @@
-# Binary Search Tree C# Language
+# Hash Table C# Language
 
 ### Part of the Lecture Learning: Data Structure and Algorithmic Thinking
 
-#### <b>Prepping for the Technical Interview</b>
+#### <b>for the Technical Interview</b>
 
-2. 해싱과 해시함수에 대한 조사 (해시의 원리, 해싱함수의 효율, 등) 
-3. 해시테이블의 충돌과 충돌 해결 방안 
+#### 공간복잡도는 무어에게 맡기고, 시간복잡도만 사냥한다. 
+
+#### 개요
+1. 해싱과 해시함수에 대한 조사 (해시의 원리, 해싱함수의 효율, 등) 
+2. 해시테이블의 충돌과 충돌 해결 방안 
 Source: Lecture Learning from Day 24: Hash Table 
-## 1. 한계점 
-값을 기준으로 Left < 노드 < Right 규칙을 지키게 되었을때 대부분의 경우 O(Log N)의 시간 복잡도로, 기존의 List 의 O(N)대비 획기적으로 계층으로 구별할수있는 값들에 대해 접근/삽입/삭제/탐색하게 해주지만
+##### 0. 해싱과, 해시 함수에 관하여 
 
-해당 규칙을 고집하게 되었을때의 한계점/또는 단점도 존재하게 된다. 
-예시로 1,0,3,6,9,11,15 와같이 값을 저장하였을때, 3을 기준으로, 한쪽으로만 저장이 되는 불균형이 발생할수 있다.
+기계의 발전은 우리로 하여금 더욱더 복잡한 시스템을 Object Oriented Language 를 통하여 구현하게 하였지만, 자료의 집합체를 다룰때에 index를 통하지 않고는 뛰어난 (시간복잡도적으로) 접근 및 탐색이 가능한 자료구조는 배열구조이지만, 
 
-이렇게 되면 이진탐색트리가 평균적으로 제공하는 시간 복잡도에 대한 메리트가 없어질수 있게 된다. 
+이는 Index 로 접근할수 있기에 가독성 측면에서 매우 아쉽다. 그렇기에, 해쉬 테이블은 프로그래머에게 뛰어난 시간복잡도로 값을 다루고, 동시에 가시성도 높은 값을 다룰수 있게 하여 준다. 
 
-where Search in Worst Case could be (O(n)). 
-특히 안그래도 GC의 심기를 건드리지않기위해 가능하면 노드기반 자료형이 기피되는 C#에서, Time Complexity에 대한 메리트마서 없다면 굳이 Binary Search Tree 를 고민해야할 이유가 없어지는데, 
+<b><i>Of course, at a cost. </i></b>  <small> (대충 공간복잡도가, CPU가 아련하게 손 흔드는 짤) </small> 
 
-이와같이 이 모든것의 원흉인 불균형을 방지하기 위해서, 자기 균형 기능이 구현된 트리를 통해 단점을 커버할수 있겠다.  
+해싱과 해시 함수에 대해서 다루기전, 해시 테이블이 무엇인지 짚고 넘어갈 필요가 있다. 
 
+헤시테이블은 키를 키준으로, 해시함수를 통해 입력받은 키의 고유의 해시값을 받아 그 값을 이용하여 헤시테이블의 인덱스값으로 활용한다. 이때 키를 받아서, 해시함수를 통해 해시테이블을 위한 인덱스값을 반환하는 과정을 해싱이라고 부른다. 
 
-## 2. 한계점에 대한 극복 방법 
-한계점이 불균형된 저장이라면, Red/Black Tree, 그리고 AVL Tree 가 있다. 
-이 둘의 공통점은 각자 다른 규칙으로 루트부터 Left Subtree, Right Subtree의 Root 에서 Leaf 까지 불균형이 존재하는지 확인하고, 불균형이 존재한다면 L < Node < R (in terms of Value) 가 깨지지않는 선에서 노드값들을 우회전, 또는 좌회전 하여 (노드 관계를 재정립하며) 불균형이 생기는걸 방지한다.
+해시함수는 받은 키에 따라서 특정적인, 고유에 최대한 가까운 값을 반환해야 하는데, 이때 조건부가 따른다. 
 
-## 3. Binary Search Tree Traversal Order 
-(Where Traversing means 1. Visiting the selected Data, 2. Outputting/ Extracting the relavant data from the selected datum)\
-Selecting a method of traversal means selecting specific route to traverse through the tree data structure. 
-Generally speaking, in a Tree Data Structure, there are multiple ways of traversing through data, 
-which is quite unlike the other data structure(specifically for what I know for now, Linear DS which only holds bidirectional/single route of traversal)
+1. 해시함수는 입력받은 키의 대한 해시값은 반복가능한, 동일한 해시값을 반환하여야 한다.  
+2. 동시에, 해시함수는 고유값에 가까운 값을 배출할줄 알아야 한다. 
+3. 1,2, 를 지키는 동시에, 해시함수는 빠르게 해시값을 반환하여야 한다. 
 
-There are 3 main types of Traversal Order, 
-1. InOrder (중위): which starts from the Left Child node, the Node, and the Right Child node
-2. PreOrder (전위): the Node, Left Node, and then the Right  
-3. PostOrder (후위) : Left, the Right, and the Node itself. 
+2,3 이 특히 중요한 요소인데, 이는 해시 테이블의 한계점이자 약점과, 이를 보완하는 방안 와 도 밀접한 관계가 있다. 
+해시함수의 존재와, 해싱이라는 행위덕분에, 프로그래머는 방대한 자료의 값에 대해 ~O(1)의 탐색, 수정, 삽입 권한을 얻을수 있게 된다. 
 
+Generally, there are mainly 4 types of Hash Functions 
+1. Division Method 
+2. Mid Square Method
+3. Folding  Method
+4. Multiplication Method 가 있겠다. 
+해시함수는 C# 은 기본적으로 적절한 해시함수를 제시한다 (GetHashCode, which is known to use SHA - 256) (Secure Hash Algorithm) 
+#####  1. 해시의 한계점
 
-For the Binary Search Tree, the InOrder would present a sequence of output in a ascending order of data by which the tree have sorted out from the root. 
-Whilst the other types of traversal order may offer unique value to other data structure and their endeavour. \
-For now Pre and PostOrder Traversal does not seem to offer any means of relatable context for this particular tree; That is, presenting an hierarchical data collection in a way that is efficiently accessible for the users. (Compared to linear data structure) 
+해시함수의 특성중 2번으로 인해서 같은 해시값을 기반으로 값을 삽입하려고 하는 경우, 다른키를 기반으로 값을 입력하였음에도, 특별한 대비가 없게 된다면 One of the value can be overwritten over the other. 
+이러한 충돌현상을 보완해주기 위해서 해시함수를 무조건적으로 고유에 가까운 값을 반환하는 해시함수를 적용하는것도 문제인데, 이는 해시함수자체의 메리트는 시간복잡도에서 가장 크게 작용하는데, 해시함수로 인해서 상쇄될 가능성이 있다 
 
-순회에 대한 고찰은 이제 Complex type의 Data Structure에 들어가면 갈수록 유의미한 아이디어 일것으로 생각된다. 
-이는 순회가 반복기와의 관계에서도 생각해볼수 있는데, 어떤 자료의 Collection 이던지 유의미함이 부여되는것은 접근하여 값을 이용할때이다.
+때문에 해시함수는 2번을 지킴과 동시에 3번 특성또한 지켜야지만 해시 테이블의 장점을 살릴수 있게 된다. 
+그렇기에 값의 충돌에 대해서 대비하는것이 필요하며, 이것을 하기위해 크게 2가지 방법으로 나뉘게 된다. 
 
-그렇기에 다른 자료구조를 보며 해당 구조의 장점과 단점을 알아간다는것은 해당 구조는 값의 접근, 삽입, 삭제, 탐색에 대해 어떤방식으로 대처하며, 각 탐색/순회방식에 어떻게 용이한지 고민해보는것이 유익하겠다. 
+추가적으로 
+#####  2. 해시의 충돌현상에 대한 극복 방법 
+1. Collision Key value 에 대해 LinkedList 생성: 충돌된 해시값에 대해서 노드기반의 LinkedList 로 값을 연결시켜준다. 
+장점은 노드기반으로 값을 추가로 이어주기에 성능에 있어서 큰 영향을 미치진 않는다. 
+단점은 노드기반에 있는데, C#은 GC의 눈치를 많이 보는데에 있다. 
 
-마지막으로 순회방식에 대한 고민은 해당 객체를 위한 적절한 반복기(들)에 대해서도 생각하고 제시할줄 아는것또한 프로그래머의 역할이라 생각된다. 
+때문에 C#에서는 2번째 방법으로 충돌현상에 대해서 극복하고자 한다. 
+2. Open Address 
+노드기반으로 충돌문제에 대해 보완할수 없다면, 해당 인덱스 주변에 해당값을 배치시키고 저장되는 값의 키값을 통해 추적할수 있게 한다. 
+
+이때, 빈공간을 찾는 방법으로 크게 3가지가 있는데, 
+1. Linear Probing( 선형 추적법) 
+interval = 1 으로 다음값을 계속적으로 빈자리를 탐색하는 방식이다. 
+2. Quadratic Probing ( 이차 추적법) 
+선형 추적법에 이어서 빈자리를 찾는데 실패할때마다 추적되는 값의 크기에 대해 interval 을 quadratic 하게 늘려가며 빈자리를 탐색한다. 
+3. Double Hashing  ( 더블 해싱) 
+인덱스 값의 충돌이 발생된다면 빈자리를 찾기위해 기존의 해싱 방법과 더불어 해당 테이블의 빈자리값을 응용한 해싱함수를 더하여 새로운 인덱스를 창출한다. 
+#####  3. 충돌현상의 보완에 파생되는 다른 약점들 
+충돌현상의 보완으로 해시 테이블의 약점을 전부 보완했다고 단정짓기에는 어려움이있다. 
+Load Factor = Total elements in hash table/ Size of hash table 
+해싱을 통해 값을 저장하는 과정에서 빠질수 없는것이 Load Factor인데, 이것으로 충돌방지를 위하여 쌓인 값을 통과하여 값을 다루는 시간의 척도가 된다. 
+해싱의 default size에 따라 값이 추가가 되는데, 독특한 인덱스에 값이 쌓이면 쌓일수록 충돌방지의 장치가 발동될 가능성이 커지며, 동시에 Load Factor또한 올라가게 된다. 
+그렇기에 일정수준으로 값이 채워지게 되면 (~ where LF = ~.75) 짧은 시간복잡도의 장점이 상쇄될수 있다. 
+
+따라서 일정수준으로 값이 채워지게 되었을때는, 더욱 커다란 배열을 생성하고 해당 배열에 '리해싱'하여 값을 재배치 시켜줌으로 위의 약점을 보완하고자 하는것이 해시 테이블 이겠다. 
