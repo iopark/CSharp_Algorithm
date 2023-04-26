@@ -27,9 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_06._Heap", "_06._Heap\_06.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day22_Task", "day22_Task\day22_Task.csproj", "{9CA347BC-8566-4BBA-BFCB-D894BD47643A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_07._BinarySearchTree", "_07._Tree\_07._BinarySearchTree.csproj", "{6A0A75A3-9DDE-47A9-BE06-FCE79AAAB0C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_07._BinarySearchTree", "_07._Tree\_07._BinarySearchTree.csproj", "{6A0A75A3-9DDE-47A9-BE06-FCE79AAAB0C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day23_Task", "day23_Task\day23_Task.csproj", "{F773F58E-BA97-4906-8AC7-9B745613CBAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day23_Task", "day23_Task\day23_Task.csproj", "{F773F58E-BA97-4906-8AC7-9B745613CBAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_08._HashTable", "_08._HashTable\_08._HashTable.csproj", "{D9C8946A-CE36-4D60-86C7-13092AAE497B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day24_Task", "day24_Task\day24_Task.csproj", "{6D40E2FC-F600-44C9-B3B3-1F25FA4E8F80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{F773F58E-BA97-4906-8AC7-9B745613CBAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F773F58E-BA97-4906-8AC7-9B745613CBAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F773F58E-BA97-4906-8AC7-9B745613CBAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9C8946A-CE36-4D60-86C7-13092AAE497B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9C8946A-CE36-4D60-86C7-13092AAE497B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9C8946A-CE36-4D60-86C7-13092AAE497B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9C8946A-CE36-4D60-86C7-13092AAE497B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D40E2FC-F600-44C9-B3B3-1F25FA4E8F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D40E2FC-F600-44C9-B3B3-1F25FA4E8F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D40E2FC-F600-44C9-B3B3-1F25FA4E8F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D40E2FC-F600-44C9-B3B3-1F25FA4E8F80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
