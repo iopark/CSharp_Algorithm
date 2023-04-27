@@ -2,10 +2,10 @@
 
 namespace day25_Task
 {
-    internal class Program
+    internal class Hanoi
     {
 
-        static void Main(string[] args)
+        static void Main_Hanoi()
         {
             string input = Console.ReadLine();
             int diskCount = int.Parse(input);
