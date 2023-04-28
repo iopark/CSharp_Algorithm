@@ -21,9 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_08._HashTable", "_08._Hash
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day24_Task", "day24_Task\day24_Task.csproj", "{6D40E2FC-F600-44C9-B3B3-1F25FA4E8F80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_09._DesignTechniques", "_09._DesignTechniques\_09._DesignTechniques.csproj", "{850C3DD1-5E9B-4DB3-9119-78D9C794FA4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_09._DesignTechniques", "_09._DesignTechniques\_09._DesignTechniques.csproj", "{850C3DD1-5E9B-4DB3-9119-78D9C794FA4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day25_Task", "day25_Task\day25_Task.csproj", "{D602DCD1-15A8-4085-B66E-A8F3DC2FBBB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day25_Task", "day25_Task\day25_Task.csproj", "{D602DCD1-15A8-4085-B66E-A8F3DC2FBBB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_10._Sorting", "_10._Sorting\_10._Sorting.csproj", "{AFB89361-8BF2-42F5-89A8-87DDE4D31A04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{D602DCD1-15A8-4085-B66E-A8F3DC2FBBB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D602DCD1-15A8-4085-B66E-A8F3DC2FBBB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D602DCD1-15A8-4085-B66E-A8F3DC2FBBB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFB89361-8BF2-42F5-89A8-87DDE4D31A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB89361-8BF2-42F5-89A8-87DDE4D31A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB89361-8BF2-42F5-89A8-87DDE4D31A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB89361-8BF2-42F5-89A8-87DDE4D31A04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

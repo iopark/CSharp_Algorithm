@@ -22,8 +22,7 @@ namespace _09._DesignTechniques
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-			Recursion.Factorial(5); 
-
+			Recursion.Factorial(5);
         }
 
 		public static void Hanoi()

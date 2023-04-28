@@ -1,55 +1,46 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace day25_Task
 {
-    internal class Hanoi
+    // 2번문제 구현: N 과 M (3)
+    internal class Program
     {
-
-        static void Main_Hanoi()
+        public static StringBuilder sb = new StringBuilder(); 
+        static void Main(string[] args)
         {
-            string input = Console.ReadLine();
-            int diskCount = int.Parse(input);
-            rods = new Stack<int>[3];
-            StringBuilder sb = new StringBuilder();
-            int moves = 0; 
-            for (int i = 0; i < rods.Length; i++)
-            {
-                rods[i] = new Stack<int>();
-            }
-            for (int i = 0; i <= diskCount; i++)
-            {
-                rods[0].Push(i);
-            }
-            Move(diskCount, 0, 2, ref moves, diskCount, sb);
+            string str = Console.ReadLine();
+            string[] str_list = str.Split(" ");
+            int limit = int.Parse(str_list[0]);
+            int index = int.Parse(str_list[1]);
+            int[] array = new int[index]; // if 2 , make list length of 2 , with int val 
+
+            GetVal(limit, index, array, 0); 
         }
 
-        public static Stack<int>[] rods;
-        public static void Move(int count, int from, int to, ref int moves, int initial, StringBuilder sb)
+        static void GetVal(int N, int M, int[] array, int index)
         {
-            if (count == 1 && rods[2].Count >= initial -1)
+            //base case 
+            if (index >= M-1)
             {
-                int plate = rods[from].Pop();
-                rods[to].Push(plate);
-                moves++;
-                sb.Append($"{from + 1} {to + 1}\n");
-                Console.WriteLine($"{moves}");
-                string finale = sb.ToString().Trim('\r', '\n');
-                Console.Write($"{finale}");
                 return;
             }
-            else if(count == 1)
+            for (int i = 0; i <= N; i++)
             {
-                int plate = rods[from].Pop(); 
-                rods[to].Push(plate);
-                sb.Append($"{from + 1} {to + 1}\n");
-                moves++;
-                return;
+                array[index] = i;
+                sb.Append();
+                if (i >= N)
+                {
+                    return;
+                }
             }
-            int otherrod = 3 - from - to;
 
-            Move(count -1, from, otherrod, ref moves, initial, sb);
-            Move(1, from, to, ref moves,initial, sb);
-            Move(count - 1, otherrod, to, ref moves, initial, sb);
+            for (int i = 1; )
+            GetVal(N, M, array, index+1); // do something to reach the base case 
         }
+
     }
 }
