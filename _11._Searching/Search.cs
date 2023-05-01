@@ -92,7 +92,8 @@ namespace _11._Searching
 
                 for (int i = 0; i < graph.GetLength(0); i++)
                 {
-                    if (graph[next, i] && !visited[i]) // 연결되어있어야 하며, 방문한적 없는 정점에 대해서 탐색한다. 
+                    if (graph[next, i] && !visited[i]) // 연결되어있어야 하며, where graph[next, i] must be true in bool[,]
+                                                       // 방문한적 없는 정점에 대해서 탐색한다. 
                     {
                         parents[i] = next;
                         bfsQueue.Enqueue(i); 
@@ -100,7 +101,7 @@ namespace _11._Searching
                 }
             }
         }
-
+        //(graph[next, i] && !visited[i]) 이부분에서 배열적으로 잘 그려지지가 않는데, 예상잘 될수있도록 연습하는방법이 있을까요?					
 
     }
 }
