@@ -39,8 +39,8 @@
                     rowCount = 0;
                 }
                 Divide(0, 0, count, count);
-                Console.WriteLine(white);
-                Console.Write(blue);
+                Console.WriteLine(blue);
+                Console.Write(white);
             }
 
             public void Divide (int x, int y, int sizex, int sizey)
