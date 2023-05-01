@@ -1,46 +1,90 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace day25_Task
+﻿namespace day25_Task
 {
-    // 2번문제 구현: N 과 M (3)
+    // 3번문제 구현: 괄호 사냥꾼 
+
+    //교수님 풀이 정리 
+    // 1. 괄호가 없다는것이 가정되었을때, 가장 낮은 값의 조건은 무엇인가?
+    // 2. 해당 조건을 충족하는 방법은 무엇인가? 
+
+    // 1. given that calculation goes from left to right, 가장낮은 값의 조건은 - 가 있는경우 가장 높은값을 - 를 할 경우 가장 낮은 값이 된다. 
+    // 2. 때문에 1을 충족하기 위해서는 
     internal class Program
     {
-        public static StringBuilder sb = new StringBuilder(); 
-        static void Main(string[] args)
+        // Divide and Conquer - Most likely using Recursion here again 
+        public class Origami
         {
-            string str = Console.ReadLine();
-            string[] str_list = str.Split(" ");
-            int limit = int.Parse(str_list[0]);
-            int index = int.Parse(str_list[1]);
-            int[] array = new int[index]; // if 2 , make list length of 2 , with int val 
+            public string[] input_list;
+            public int count;
+            public bool[,] canvas;
+            public int white; // white is true
+            public int blue; // blue is false 
 
-            GetVal(limit, index, array, 0); 
-        }
 
-        static void GetVal(int N, int M, int[] array, int index)
-        {
-            //base case 
-            if (index >= M-1)
+            public void Run()
             {
-                return;
-            }
-            for (int i = 0; i <= N; i++)
-            {
-                array[index] = i;
-                sb.Append();
-                if (i >= N)
+                string input_count = Console.ReadLine();
+                count = int.Parse(input_count);
+                canvas = new bool[count, count];
+                for (int i = 0; i < count; i++)
                 {
+                    string line_input = Console.ReadLine();
+                    string[] intoArray = line_input.Split(" ");
+                    int rowCount = 0;
+                    foreach (string item in intoArray)
+                    {
+                        bool block = int.Parse(item) == 1 ? true : false;
+                        canvas[i, rowCount] = block;
+                        rowCount++;
+                    }
+                    rowCount = 0;
+                }
+                Divide(0, 0, count, count);
+                Console.WriteLine(white);
+                Console.Write(blue);
+            }
+
+            public void Divide (int x, int y, int sizex, int sizey)
+            {
+                if (AllColor(x, y, sizex, sizey)) // 제이스 케이스는 꼭 숫자가 아니여도 되며, 특정한 조건으로도 구현이 가능하다. 
+                { // 또한 베이스케이스로 가는조건이 한가지만 아니어도 되며, 여러가지를 같이 재귀하게 하되 (동일한 규격으로 하면 예측이 가능해진다) 
+                    bool color = canvas[x, y];
+                    if (color)
+                    {
+                        white++;
+                    }
+                    else
+                        blue++;
                     return;
                 }
+
+                Divide(x, y, sizex/2, sizey/2); // divide by the first quarter
+                Divide(x + sizex / 2, y, sizex / 2, sizey / 2);
+                Divide(x, y + sizey / 2, sizex / 2, sizey / 2); 
+                Divide(x+sizex / 2,y+sizey / 2,sizex/2, sizey/2);
             }
 
-            for (int i = 1; )
-            GetVal(N, M, array, index+1); // do something to reach the base case 
-        }
+            public bool AllColor(int x, int y, int sizex, int sizey)
+            {
+                bool check = canvas[x, y]; // 잘린 종이의 0,0 첫번째되는 숫자를 기준으로 전부 같은 종류를 가지고 있는지 확인합니다. 
 
+                for (int i = x; i < x+sizex; i++)
+                {
+                    for (int j = y; j < y+sizey; j++)
+                    {
+                        if (canvas[i, j] != check) 
+                            return false;
+                    }
+                }
+
+                return true;
+            }
+        }
+        
+        static void Main(string[] args)
+        {
+
+            Origami origami = new Origami();
+            origami.Run();
+        }
     }
 }
