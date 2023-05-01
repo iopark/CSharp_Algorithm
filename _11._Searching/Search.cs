@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace _11._Searching
 {
@@ -64,13 +65,14 @@ namespace _11._Searching
                     !visited[i])// 또한 해당 정점이 visit 하지 않은곳에 대해서만 탐색 
                                 // 따라서 이것이 해당 분할정복의 basecase가 되기도 한다. 
                 {
+                    Console.WriteLine($"x:{start}y:{i}");
                     parents[i] = start; 
                     SearchMode(graph, i, visited, parents); // basecase에 도달할때까지, DFS 방식으로 탐색 구현 
                 } 
             }
         }
 
-        public static void BFS(bool[,] graph, int start, bool[] visited, int[] parents)
+        public static void BFS(bool[,] graph, int start, out bool[] visited, out int[] parents)
         {
             visited = new bool[graph.GetLength(0)];
             parents = new int[graph.GetLength(0)];
@@ -95,6 +97,7 @@ namespace _11._Searching
                     if (graph[next, i] && !visited[i]) // 연결되어있어야 하며, where graph[next, i] must be true in bool[,]
                                                        // 방문한적 없는 정점에 대해서 탐색한다. 
                     {
+                        Console.WriteLine($"x:{next}y:{i}");
                         parents[i] = next;
                         bfsQueue.Enqueue(i); 
                     }

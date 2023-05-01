@@ -68,7 +68,15 @@ namespace _11._Searching
 
             SearchNode(graph, start, visited, parents);
         }
-
+        /// <summary>
+        /// 이해가 안됬던 부분 
+        /// 1. 어떻게 하나의 for loop 으로 [,] 배열을 전부 탐구하였을까?
+        /// 재귀문을 통해서 
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <param name="start"></param>
+        /// <param name="visited"></param>
+        /// <param name="parents"></param>
         private static void SearchNode(in bool[,] graph, int start, bool[] visited, int[] parents)
         {
             visited[start] = true;
@@ -111,7 +119,9 @@ namespace _11._Searching
                         !visited[i])            // 방문한적 없는 정점
                     {
                         parents[i] = next;
-                        bfsQueue.Enqueue(i);
+                        bfsQueue.Enqueue(i); // 정점값을 추가하는것과 동시에 x값을 변경하는것에 해당된다. 
+                                                // 이는 배열 자체가 x, y 로 구성 되어있는데, 간선값은 x 의 y값에 할당되는 이유와 동일하겠다. 
+
                     }
                 }
             }
