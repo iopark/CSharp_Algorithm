@@ -18,19 +18,19 @@ namespace _13._PathFinding
         const int CostStraight = 10; // 
         const int CostDiagonal = 14;
 
-        static Point[] Direction =
+        static Point_1[] Direction =
         {
-            new Point(  0, +1 ),			// 상
-			new Point(  0, -1 ),			// 하
-			new Point( -1,  0 ),			// 좌
-			new Point( +1,  0 ),			// 우
-			// new Point( -1, +1 ),		    // 좌상
-			// new Point( -1, -1 ),		    // 좌하
-			// new Point( +1, +1 ),		    // 우상
-			// new Point( +1, -1 )		    // 우하
+            new Point_1(  0, +1 ),			// 상
+			new Point_1(  0, -1 ),			// 하
+			new Point_1( -1,  0 ),			// 좌
+			new Point_1( +1,  0 ),			// 우
+			// new Point_1( -1, +1 ),		    // 좌상
+			// new Point_1( -1, -1 ),		    // 좌하
+			// new Point_1( +1, +1 ),		    // 우상
+			// new Point_1( +1, -1 )		    // 우하
 		};
 
-        public static bool PathFinding(in bool[,] tileMap, in Point start, in Point end, out List<Point> path)
+        public static bool PathFinding(in bool[,] tileMap, in Point_1 start, in Point_1 end, out List<Point_1> path)
         {
             int ySize = tileMap.GetLength(0);
             int xSize = tileMap.GetLength(1);
@@ -57,12 +57,12 @@ namespace _13._PathFinding
                 // 도착했다고 판단해서 경로 반환
                 if (nextNode.point.x == end.x && nextNode.point.y == end.y)
                 {
-                    Point? pathPoint = end;
-                    path = new List<Point>();
+                    Point_1? pathPoint = end;
+                    path = new List<Point_1>();
 
                     while (pathPoint != null)
                     {
-                        Point point = pathPoint.GetValueOrDefault(); // GetValueOrDefault returns the default value of the datatype, which in this case, (int) = (0,0) 
+                        Point_1 point = pathPoint.GetValueOrDefault(); // GetValueOrDefault returns the default value of the datatype, which in this case, (int) = (0,0) 
                         path.Add(point);
                         pathPoint = nodes[point.y, point.x].parent;
                     }
@@ -72,7 +72,9 @@ namespace _13._PathFinding
                 }
 
                 // 4. AStar 탐색을 진행
-                // 방향 탐색
+                // a. 방향 탐색, Order is Top, Bottom, Left, and Right. 만약 탐색이 가능한 지점이라면, 
+                // <b>b.</b>해당 정점을 기준으로 또다른 탐색 가능한 정점을 힙에 추가한다. (백트래킹 마냥 불가능의 조건에 대한 돌아갈수있는 분기점으로 활용되게 된다) 
+
                 for (int i = 0; i < Direction.Length; i++)
                 {
                     int x = nextNode.point.x + Direction[i].x; // up, down, left, and right 
@@ -92,15 +94,17 @@ namespace _13._PathFinding
                     // 특정한 방향으로 try 하는 정점값 
                     // 4-2. 탐색한 정점 만들기
                     int g = nextNode.g + ((nextNode.point.x == x || nextNode.point.y == y) ? CostStraight : CostDiagonal);
-                    int h = Heuristic(new Point(x, y), end);
-                    ASNode newNode = new ASNode(new Point(x, y), nextNode.point, g, h);
+                    int h = Heuristic(new Point_1(x, y), end);
+                    ASNode newNode = new ASNode(new Point_1(x, y), nextNode.point, g, h);
 
                     // 4-3. 정점의 갱신이 필요한 경우 새로운 정점으로 할당
                     if (nodes[y, x] == null ||      // 탐색하지 않은 정점이거나 (해당 조건은 line 88 에서 추가적으로 점검이 되었다) 
                         nodes[y, x].f > newNode.f)  // 가중치가 높은 정점인 경우
                     {
                         nodes[y, x] = newNode;
-                        nextPointPQ.Enqueue(newNode, newNode.f);
+                        nextPointPQ.Enqueue(newNode, newNode.f); //  이때 힙에 저장되는 값 덕분에, 유클리드의 최악의상황,
+                                                                 //  대각선 기준 꾿꾿이 탐색하였지만 벽에 전부 막히는 상황에 막히며 이미 인접장소가 탐색되었다면, 다른 동떨어진 정점으로 백트래킹 하게 된다. 
+
                     }
                 }
             }
@@ -110,7 +114,7 @@ namespace _13._PathFinding
         }
 
         // 휴리스틱 (Heuristic) : 최상의 경로를 추정하는 순위값, 휴리스틱에 의해 경로탐색 효율이 결정됨
-        private static int Heuristic(Point start, Point end)
+        private static int Heuristic(Point_1 start, Point_1 end)
         {
             int xSize = Math.Abs(start.x - end.x);  // 가로로 가야하는 횟수
             int ySize = Math.Abs(start.y - end.y);  // 세로로 가야하는 횟수
@@ -125,14 +129,14 @@ namespace _13._PathFinding
         //정점을 구성하게 되는 노드
         private class ASNode
         {
-            public Point point;     // 현재 정점
-            public Point? parent;   // 이 정점을 탐색한 정점 - 이것으로 이전 겂에 대해서 추적하는데에 이용한다. therefore, in the beginning this can be null
+            public Point_1 point;     // 현재 정점
+            public Point_1? parent;   // 이 정점을 탐색한 정점 - 이것으로 이전 겂에 대해서 추적하는데에 이용한다. therefore, in the beginning this can be null
 
             public int g;           // 현재까지의 값, 즉 지금까지 경로 가중치 
             public int h;           // 앞으로 예상되는 값, 목표까지 추정 경로 가중치
             public int f;           // f(x) = g(x) + h(x);
 
-            public ASNode(Point point, Point? parent, int g, int h)
+            public ASNode(Point_1 point, Point_1? parent, int g, int h)
             {
                 this.point = point;
                 this.parent = parent;
@@ -143,16 +147,15 @@ namespace _13._PathFinding
         }
     }
 
-    public struct Point
+    public struct Point_1
     {
         public int x;
         public int y;
 
-        public Point(int x, int y)
+        public Point_1(int x, int y)
         {
             this.x = x;
             this.y = y;
         }
     }
 }
-
