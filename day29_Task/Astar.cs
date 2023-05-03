@@ -54,6 +54,8 @@ namespace day29_Task
                     // null 이 아닐때 까지 path 에 저장해야만 하는데, 
                     while (toInitial != null)
                     {
+                        // 1. path 에 해당 point 저장 
+                        // 2. 해당 point 의 parent point 를 반복문을 위해 저장 
                         Point previous = nodes[toInitial.y, toInitial.x].parent; ; 
                         shortestpath.Add(toInitial); 
                         initialPoint = nodes[initialPoint.y, initialPoint.x].parent;
