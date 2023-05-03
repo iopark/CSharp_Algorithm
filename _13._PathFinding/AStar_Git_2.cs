@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace _13._PathFinding
 {
-    internal class AStar_Git
+    internal class AStar_Git_2
     {
         /******************************************************
 		 * A* 알고리즘
 		 * 
 		 * 다익스트라 알고리즘을 확장하여 만든 최단경로 탐색알고리즘
-		 * 경로 탐색의 우선순위를 두고 유망한 해_부터_ 우선적으로 탐색
+		 * 경로 탐색의 우선순위를 두고 유망한 해부터 우선적으로 탐색
 		 ******************************************************/
 
         const int CostStraight = 10;
@@ -36,15 +36,15 @@ namespace _13._PathFinding
             int xSize = tileMap.GetLength(1);
 
             ASNode[,] nodes = new ASNode[ySize, xSize];
-            bool[,] visited = new bool[ySize, xSize]; // 맵에 대해서 추적된 정점에 대해서 기록하는데에 사용하며, 백트래킹과 비슷하게 아마도 마지막으로 추적된 시점으로 백트래킹을 하지않을까?
+            bool[,] visited = new bool[ySize, xSize];
             PriorityQueue<ASNode, int> nextPointPQ = new PriorityQueue<ASNode, int>();
 
             // 0. 시작 정점을 생성하여 추가
             ASNode startNode = new ASNode(start, null, 0, Heuristic(start, end));
-            nodes[startNode.point.y, startNode.point.x] = startNode; // where iteration goes from y, x. 
-            nextPointPQ.Enqueue(startNode, startNode.f); // where f, is heuristic value representing path value to the end point 
-            // (시작점, 도착점)을 기점으로 시작한다. 
-            while (nextPointPQ.Count > 0) // 힙 자료구조에 저장된 값이 있다면, 진행하며, Enqueue 가 되는 시점은 line 101 이 유일하다. 
+            nodes[startNode.point.y, startNode.point.x] = startNode;
+            nextPointPQ.Enqueue(startNode, startNode.f);
+
+            while (nextPointPQ.Count > 0)
             {
                 // 1. 다음으로 탐색할 정점 꺼내기
                 ASNode nextNode = nextPointPQ.Dequeue();
@@ -61,13 +61,13 @@ namespace _13._PathFinding
 
                     while (pathPoint != null)
                     {
-                        Point point = pathPoint.GetValueOrDefault(); // GetValueOrDefault returns the default value of the datatype, which in this case, (int) = (0,0) 
+                        Point point = pathPoint.GetValueOrDefault();
                         path.Add(point);
                         pathPoint = nodes[point.y, point.x].parent;
                     }
 
-                    path.Reverse(); // 도착시점을 기점으로 시작점까지의 길에 대해서 반환하게 해준다. 
-                    return true; // 더이상 에이스타 알고리즘 실행 정지 
+                    path.Reverse();
+                    return true;
                 }
 
                 // 4. AStar 탐색을 진행
@@ -94,7 +94,7 @@ namespace _13._PathFinding
                     ASNode newNode = new ASNode(new Point(x, y), nextNode.point, g, h);
 
                     // 4-3. 정점의 갱신이 필요한 경우 새로운 정점으로 할당
-                    if (nodes[y, x] == null ||      // 탐색하지 않은 정점이거나 (해당 조건은 line 88 에서 추가적으로 점검이 되었다) 
+                    if (nodes[y, x] == null ||      // 탐색하지 않은 정점이거나
                         nodes[y, x].f > newNode.f)  // 가중치가 높은 정점인 경우
                     {
                         nodes[y, x] = newNode;
@@ -120,13 +120,12 @@ namespace _13._PathFinding
             return CostStraight * (int)Math.Sqrt(xSize * xSize + ySize * ySize);
         }
 
-        //정점을 구성하게 되는 노드
         private class ASNode
         {
             public Point point;     // 현재 정점
-            public Point? parent;   // 이 정점을 탐색한 정점 - 이것으로 이전 겂에 대해서 추적하는데에 이용한다. therefore, in the beginning this can be null
+            public Point? parent;   // 이 정점을 탐색한 정점
 
-            public int g;           // 현재까지의 값, 즉 지금까지 경로 가중치 
+            public int g;           // 현재까지의 값, 즉 지금까지 경로 가중치
             public int h;           // 앞으로 예상되는 값, 목표까지 추정 경로 가중치
             public int f;           // f(x) = g(x) + h(x);
 
