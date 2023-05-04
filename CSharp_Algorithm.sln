@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "day29_Task", "day29_Task\da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_14._MinimumSpanningTree", "_14._MinimumSpanningTree\_14._MinimumSpanningTree.csproj", "{856F672C-8215-46C4-BD06-63E8578ABA4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day30_TextRPG", "day30_TextRPG\day30_TextRPG.csproj", "{F5F36D0D-AED2-465B-A94F-1997D796F01E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_TextRpg", "Project_TextRpg\Project_TextRpg.csproj", "{8264526B-0B5D-4866-B35C-A642857856D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,14 @@ Global
 		{856F672C-8215-46C4-BD06-63E8578ABA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{856F672C-8215-46C4-BD06-63E8578ABA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{856F672C-8215-46C4-BD06-63E8578ABA4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F36D0D-AED2-465B-A94F-1997D796F01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F36D0D-AED2-465B-A94F-1997D796F01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F36D0D-AED2-465B-A94F-1997D796F01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F36D0D-AED2-465B-A94F-1997D796F01E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8264526B-0B5D-4866-B35C-A642857856D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8264526B-0B5D-4866-B35C-A642857856D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8264526B-0B5D-4866-B35C-A642857856D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8264526B-0B5D-4866-B35C-A642857856D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
