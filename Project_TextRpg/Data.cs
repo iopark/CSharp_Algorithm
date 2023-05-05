@@ -73,6 +73,5 @@ namespace Project_TextRpg
             return null;
         }
 
-        private Point SpawnPoint()
     }
 }
