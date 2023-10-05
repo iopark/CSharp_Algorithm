@@ -32,7 +32,7 @@ LinkedList<string> linked_List = new LinkedList<string>(); // Declaring an Linke
 문법적으론, array[200] = calling index val which is not initialized, 은 말이 아예안되는것은 아니다. 때문에, C#속에서는 해당 변수의 인덱스 크기에 대해 예외처리 기능이 포함되어 있다. 
 
 배열의 시간 복잡도 
-배열속에서는, n 만큼의 데이터가 저장된 배열을 탐색할때에, 값의 접근은 O(1) 이지만, 배열은 선형탐색을 통해서 처리 하기 때문에 O(n) 만큼 탐색하게 되는 시간complexity 가 있다. 
+배열속에서는, n 만큼의 데이터가 저장된 배열을 탐색할때에, 값의 접근은 O(1) 이지만, 배열은 선형탐색을 통해서 처리 하기 때문에 O(n) 만큼 탐색하게 되는 시간 complexity 가 있다. 
 
 
 그럼 List 는 어떨까?
@@ -52,7 +52,18 @@ and If count = Capacity, copies the following array internally, before relocatin
 Array 가 연속적인 값으로 저장되는 또 다른 이유는 선언된 특정 instance에 대해서 heap 영역에 저장이 될때 frag. 형태로 저장될수는 없기 때문이기도하지 않을까 생각이 들지만,(전혀 사실이 아니었고) 
 이건 조금더 찾아보기로 하자 (연결 리스트로 바로 반론 개박살)
 
-Linked Array 
+Linked List 
+
+시간복잡도 
+  접근 
+  탐색 
+  삽입 
+  삭제 
+
+Types 
+  단방향 LinkedList 
+  양방향 LinkedList 
+  환형<C#>LinkedList 
 
 
 
