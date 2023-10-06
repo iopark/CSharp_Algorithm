@@ -50,10 +50,10 @@ List 는 Capacity 따로, Count 따로 가며, 값을 추가할때마다 반응�
 and If count = Capacity, copies the following array internally, before relocating into array with bigger capacity; 
 
 Array 가 연속적인 값으로 저장되는 또 다른 이유는 선언된 특정 instance에 대해서 heap 영역에 저장이 될때 frag. 형태로 저장될수는 없기 때문이기도하지 않을까 생각이 들지만,(전혀 사실이 아니었고) 
-이건 조금더 찾아보기로 하자 (연결 리스트로 바로 반론 개박살)
 
 Linked List 
-
+> 연속적 자료구조와 다르게, Index기능을 사용할수 없으며 *힙영역에 노드로써 개별적*으로 구분되어 저장되어있는 자료구조) 형태.
+> 
 시간복잡도 
   접근 
   탐색 
