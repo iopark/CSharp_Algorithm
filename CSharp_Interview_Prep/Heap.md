@@ -16,7 +16,7 @@
 1. 삽입 과정
 2. 삭제 과정
 
-[힙정렬](./CSharp_Algorithm/CSharp_Interview_Prep/Algorithm_Sorting.md) 구현 원리
+[힙정렬](./Algorithm_Sorting.md) 구현 원리
 
 구현방법: 완전이진트리의 원리를 응용하여 배열로써 구현이 가능하다. 
 완전이진트리 <-> 포화이진트리 
