@@ -35,7 +35,7 @@ where Search in Worst Case could be ~(O(n)).
 이와같이 이 모든것의 원흉인 불균형을 방지하기 위해서, 자기 균형 기능이 구현된 트리를 통해 단점을 커버할수 있겠다.  
 
 
-### 2. 한계점에 대한 극복 방법 
+### 2. 한계점에 대한 극복 방법: 자가균형 
 한계점이 불균형된 저장이라면, Red/Black Tree, 그리고 AVL Tree 가 있다. 
 이 둘의 공통점은 각자 다른 규칙으로 루트부터 Left Subtree, Right Subtree의 Root 에서 Leaf 까지 불균형이 존재하는지 확인하고, 불균형이 존재한다면 L < Node < R (in terms of Value) 가 깨지지않는 선에서 노드값들을 우회전, 또는 좌회전 하여 (노드 관계를 재정립하며) 불균형이 생기는걸 방지한다.
 
@@ -74,4 +74,4 @@ For now Pre and PostOrder Traversal does not seem to offer any means of relatabl
 힙: 뷸균형에 대해 안전하다. 
 힙은 완전이진트리를 유지함에 목표를 두며, 삽입 또는 삭제 접근하여 삭제 당시 가장 오른쪽의 Leaf값을 삭제 하며 
 
-BST: 
+BST: L < Parent < R 규칙을 지키게 되어, 중간값을 
